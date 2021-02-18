@@ -1,6 +1,7 @@
 package study.charlieZip.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,8 +21,8 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    private String password;
     private String username;
+    private String password;
     private String date;
 
     @Enumerated(EnumType.STRING)
@@ -30,4 +31,12 @@ public class Member {
     @Embedded
     private Address address;
 
+    @Builder
+    public Member(String username, String password, String date, Gender gender, Address address) {
+        this.username = username;
+        this.password = password;
+        this.date = date;
+        this.gender = gender;
+        this.address = address;
+    }
 }
