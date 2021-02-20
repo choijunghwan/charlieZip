@@ -39,4 +39,12 @@ public class Member {
         this.gender = gender;
         this.address = address;
     }
+
+
+    public Member(String username, String password, String date, Gender gender) {
+        this.username = username;
+        this.password = password;
+        this.date = date;
+        this.gender = gender;
+    }
 }
