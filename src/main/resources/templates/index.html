@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"></div>
+    <link rel="stylesheet" href="css/style.css">
+    <title>찰리집</title>
+</head>
+<body>
+    <header id="header">
+        <nav id="nav">
+            <div class="container">
+                <div class="row">
+                    <div class="nav">
+                        <div class="nav_left clearfix">
+                            <h2>
+                                <a href="#"><img src="/img/logo.jpg" alt="찰리집"></a>
+                            </h2>
+                        </div>
+                        <div class="nav_right">
+                            <ul class="clearfix">
+                                <li class="line"><a href="/members/login">로그인</a></li>
+                                <li><a href="/members/new">회원가입</a></li>
+                            </ul>
+                        </div>
+                        <div id="mlogin">
+                            <a href="#">
+                                    <span class="img_svg">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="user-circle" class="svg-inline--fa fa-user-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M248 104c-53 0-96 43-96 96s43 96 96 96 96-43 96-96-43-96-96-96zm0 144c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm0-240C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 448c-49.7 0-95.1-18.3-130.1-48.4 14.9-23 40.4-38.6 69.6-39.5 20.8 6.4 40.6 9.6 60.5 9.6s39.7-3.1 60.5-9.6c29.2 1 54.7 16.5 69.6 39.5-35 30.1-80.4 48.4-130.1 48.4zm162.7-84.1c-24.4-31.4-62.1-51.9-105.1-51.9-10.2 0-26 9.6-57.6 9.6-31.5 0-47.4-9.6-57.6-9.6-42.9 0-80.6 20.5-105.1 51.9C61.9 339.2 48 299.2 48 256c0-110.3 89.7-200 200-200s200 89.7 200 200c0 43.2-13.9 83.2-37.3 115.9z"></path></svg>
+                                    </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="ban">
+            <div class="ss1 active"></div>
+            <div class="ss2"></div>
+            <div class="ss3"></div>
+            <div class="ss4"></div>
+        </div>
+        <div id="ban_menu">
+            <div class="container">
+                <div class="row">
+                    <div class="ban_menu">
+                        <ul>
+                            <li><a href="#" class="m1">커피</a></li>
+                            <li><a href="#" class="m2">쇼핑</a></li>
+                            <li><a href="#" class="m3">디저트</a></li>
+                            <li><a href="#" class="m4">음료</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!-- //header -->
+
+    <section id="recent">
+        <div class="container">
+            <div class="row">
+                <div class="recent">
+                    <h2>업로드 게시물</h2>
+                    <div class="recent_chart">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="post">
+                                        <img src="/img/coffeetaste.jpg" alt="커피맛">
+                                    </div>
+                                    <div class="infor">
+                                        <h3>벙커컴퍼니</h3>
+                                        <ul class="clearfix">
+                                            <li class="line">아메리카노</li>
+                                            <li>5500</li>
+                                        </ul>
+                                        <div class="infor_btn">
+                                            <a href="#"><span>자세히보기</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="post">
+                                        <img src="/img/coffeetaste.jpg" alt="커피맛">
+                                    </div>
+                                    <div class="infor">
+                                        <h3>벙커컴퍼니1</h3>
+                                        <ul class="clearfix">
+                                            <li class="line">아메리카노</li>
+                                            <li>5500</li>
+                                        </ul>
+                                        <div class="infor_btn">
+                                            <a href="#"><span>자세히보기</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="post">
+                                        <img src="/img/coffeetaste.jpg" alt="커피맛">
+                                    </div>
+                                    <div class="infor">
+                                        <h3>벙커컴퍼니2</h3>
+                                        <ul class="clearfix">
+                                            <li class="line">아메리카노</li>
+                                            <li>5500</li>
+                                        </ul>
+                                        <div class="infor_btn">
+                                            <a href="#"><span>자세히보기</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="post">
+                                        <img src="/img/coffeetaste.jpg" alt="커피맛">
+                                    </div>
+                                    <div class="infor">
+                                        <h3>벙커컴퍼니3</h3>
+                                        <ul class="clearfix">
+                                            <li class="line">아메리카노</li>
+                                            <li>5500</li>
+                                        </ul>
+                                        <div class="infor_btn">
+                                            <a href="#"><span>자세히보기</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="post">
+                                        <img src="/img/coffeetaste.jpg" alt="커피맛">
+                                    </div>
+                                    <div class="infor">
+                                        <h3>벙커컴퍼니4</h3>
+                                        <ul class="clearfix">
+                                            <li class="line">아메리카노</li>
+                                            <li>5500</li>
+                                        </ul>
+                                        <div class="infor_btn">
+                                            <a href="#"><span>자세히보기</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //recent -->
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+    <!-- //footer  -->
+
+    <!-- 자바스크립트 라이브러리 -->
+    <script th:inline="javascript">
+		//배너 탭 메뉴
+		var banImg = $(".ban > div");
+		var banBtn = $(".ban_menu > ul > li");
+
+		banImg.hide().eq(0).show();
+		banBtn.hover(function(e){
+			e.preventDefault(0);
+			var target = $(this);
+			var index = target.index();
+			banImg.removeClass("active");
+			target.addClass("active");
+			banImg.css("display", "none");
+			banImg.eq(index).css("display", "block");
+		});
+
+		//업로드 게시물 이미지 슬라이드
+		var mySwiper = new Swiper('.swiper-container',{
+			slidesPerView:4,
+			spaceBetween: 24,
+			keyboard: {
+				enabled: true,
+				onlyInViewport: false,
+			},
+			breakpoints: {
+                // when window width is >= 600px
+                600: {
+                  slidesPerView: 1.4,
+                  spaceBetween: 24
+                },
+                // when window width is >= 768px
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 24
+                },
+                // when window width is >= 960px
+                960: {
+                  slidesPerView: 3,
+                  spaceBetween: 24
+                }
+            }
+		});
+	</script>
+</body>
+</html>

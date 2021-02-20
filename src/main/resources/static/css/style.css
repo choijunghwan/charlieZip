@@ -1,0 +1,147 @@
+@charset "utf-8";
+
+/* 레이아웃 */
+#header {width: 100%; background-color: #ddd; position: relative;}
+#recent {}
+#footer {background: #211f1f;}
+
+/* 가운데 영역 */
+.container {position: relative; width: 1280px; margin: 0 auto; background: rgba(0,0,0,0);}
+
+/* 로우 영역 */
+.row {padding: 0 28px;}
+
+/* 헤더 영역 */
+.nav { position: absolute; left: 0; top: 20px; width: 100%; height: 100px; z-index: 10;}
+.nav .nav_left {float: left;}
+.nav .nav_left h2 {padding-left: 10px; color: #fff; font-size: 16px;}
+.nav .nav_left h2 a img {width: 100px; z-index: -20;}
+.nav .nav_right {float: right;}
+.nav .nav_right ul {}
+.nav .nav_right ul li {float: left;}
+.nav .nav_right ul li.line {position: relative; margin-right: 30px;}
+.nav .nav_right ul li a {color: #fff; padding: 10px; font-size: 16px;}
+.nav .nav_right ul li.line::after {content: ''; width: 1px; height: 14px; background: #fff; position: absolute; right: -16px; top: 6px;}
+
+#mlogin {position: relative;}
+#mlogin a {display: none; margin-left: 20px; font-size: 14px; padding: 3px 10px; position: absolute; top: 0; right: 8px; color: #fff;}
+#mlogin span {display: block; width: 30px; height: 30px;}
+
+.ban {width: 100%; }
+.ban .ss1 {height: 600px; background: url(../img/menu_coffee.jpg) no-repeat center center; background-size: cover;}
+.ban .ss2 {height: 600px; background: url(../img/menu_shop.jpg) no-repeat center center; background-size: cover;}
+.ban .ss3 {height: 600px; background: url(../img/menu_dessert.jpg) no-repeat center center; background-size: cover;}
+.ban .ss4 {height: 600px; background: url(../img/menu_wine.jpg) no-repeat center center; background-size: cover;}
+
+.ban_menu {position: relative;}
+.ban_menu ul {position: absolute; left: 25%; bottom: 65px; width: 100%; height: 100%; }
+.ban_menu ul li {float: left; display: block; width: 12.5%; height: 60px; text-align: center;}
+.ban_menu ul li a {display: block; width: 100%; height: 100%; font-size: 25px; font-weight: 300; color: #fff;}
+.ban_menu ul li a.m1:hover {
+	transform: translate(0px, -535px);
+	transition-property: all;
+	transition-duration: 1s;
+	background-color: rgba(162,166,114,0.5); padding: 270px 0;
+}
+.ban_menu ul li a.m2:hover {
+	transform: translate(0px, -535px);
+	transition-property: all;
+	transition-duration: 1s;
+	background-color: rgba(162,166,114,0.5); padding: 270px 0;
+}
+.ban_menu ul li a.m3:hover {
+	transform: translate(0px, -535px);
+	transition-property: all;
+	transition-duration: 1s;
+	background-color: rgba(162,166,114,0.5); padding: 270px 0;
+}
+.ban_menu ul li a.m4:hover {
+	transform: translate(0px, -535px);
+	transition-property: all;
+	transition-duration: 1s;
+	background-color: rgba(162,166,114,0.5); padding: 270px 0;
+}
+
+/* 업로드 게시물 영역 */
+.recent {padding: 100px 0;}
+.recent h2 {font-size: 30px; font-weight: 500; margin-bottom: 20px;}
+.recent .recent_chart {}
+.recent .recent_chart .swiper-slide {float: left; width: 23%; margin-right: 2%;}
+.recent .recent_chart .swiper-slide:last-child {margin-right: 0;}
+.recent .recent_chart .post img {}
+.recent .recent_chart .infor {margin-top: -4px; padding: 10px; background: #f2f2f2;}
+.recent .recent_chart .infor h3 {color: #333; font-size: 25px; font-weight: 700;}
+.recent .recent_chart .infor ul {}
+.recent .recent_chart .infor ul li {position: relative; float: left; font-size: 15px; margin-right: 18px;}
+.recent .recent_chart .infor ul li.line {position: relative;}
+.recent .recent_chart .infor ul li.line::after {position: absolute; content: ''; width: 1px; height: 13px; background: #999; top: 4px; right: -10px;}
+.recent .recent_chart .infor .infor_btn {padding-top: 10px;}
+.recent .recent_chart .infor .infor_btn a {padding: 10px 0; border-radius:36px; display: block; text-align: center; width: 100px; border: 1px solid #585858; background-color: #585858;}
+.recent .recent_chart .infor .infor_btn span {color: #fff;}
+
+/*푸터 영역*/
+.footer {}
+.footer address {color: #8f8f8f; padding: 50px 0 15px 0;}
+
+
+/* 미디어쿼리 */
+@media (max-width: 1290px){
+	.container {width: 100%;}
+
+	.ban_menu ul {left: 20%;}
+}
+
+@media (max-width: 1024px){
+
+}
+@media (max-width: 960px){
+	.recent {padding: 80px 0;}
+}
+@media (max-width: 768px){
+	body {background: #d9d7e0;}
+
+	.row {padding: 0 16px;}
+
+	.nav .nav_right ul li a {font-size: 14px; padding: 7px 8px;}
+	.nav .nav_right ul li.line::after {height: 12px; top: 5px;}
+
+	.ban .ss1 {height: 400px;}
+	.ban .ss2 {height: 400px;}
+	.ban .ss3 {height: 400px;}
+	.ban .ss4 {height: 400px;}
+
+	.ban_menu ul li a {font-size: 20px;}
+	.ban_menu ul li a.m1:hover {transform: translate(0px, -335px); padding: 170px 0;}
+	.ban_menu ul li a.m2:hover {transform: translate(0px, -335px); padding: 170px 0;}
+	.ban_menu ul li a.m3:hover {transform: translate(0px, -335px); padding: 170px 0;}
+	.ban_menu ul li a.m4:hover {transform: translate(0px, -335px); padding: 170px 0;}
+
+	#recent .row {padding: 24px;}
+	.recent {padding: 24px; background: #fff;}
+
+}
+@media (max-width: 600px){
+
+	#mlogin a {display: block;}
+
+	.nav .nav_right ul {display: none;}
+
+}
+@media (max-width: 480px){
+
+	.ban .ss1 {height: 300px;}
+	.ban .ss2 {height: 300px;}
+	.ban .ss3 {height: 300px;}
+	.ban .ss4 {height: 300px;}
+
+	.ban_menu ul {bottom: 40px;}
+	.ban_menu ul li {padding: 0 5px; width: 11.5%;}
+	.ban_menu ul li a {font-size: 15px;}
+	.ban_menu ul li a.m1:hover {transform: translate(0px, -260px); padding: 120px 0;}
+	.ban_menu ul li a.m2:hover {transform: translate(0px, -260px); padding: 120px 0;}
+	.ban_menu ul li a.m3:hover {transform: translate(0px, -260px); padding: 120px 0;}
+	.ban_menu ul li a.m4:hover {transform: translate(0px, -260px); padding: 120px 0;}
+}
+@media (max-width: 320px){
+
+}

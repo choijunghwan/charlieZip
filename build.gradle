@@ -23,6 +23,10 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	//html 파일을 컴파일만 해주면 서버 재 시작없이 파일 변경 가능
+    // 메뉴 build -> Recompile
+	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.8'
 
 	//querydsl 추가
