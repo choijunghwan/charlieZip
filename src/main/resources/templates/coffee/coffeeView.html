@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"></div>
+    <link rel="stylesheet" th:href="@{/css/coffeeView.css}">
+    <title>찰리집 : 커피 </title>
+</head>
+<body>
+    <div th:replace="fragments/board_header :: board_header"></div>
+    <!-- //header -->
+
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div class="content">
+                    <div class="content_left">
+                        <img src="/img/coffeetaste.jpg" alt="커피맛">
+                    </div>
+                    <div class="content_right">
+                        <p>벙커컴퍼니</p>
+                        <div class="info">
+                            <dl class="list">
+                                <dt class="tit">메뉴</dt>
+                                <dd class="desc">아메리카노</dd>
+                            </dl>
+                            <dl class="list">
+                                <dt class="tit">가격</dt>
+                                <dd class="desc">5500원</dd>
+                            </dl>
+                            <dl class="list">
+                                <dt class="tit">내용</dt>
+                                <dd class="desc">무산소 발효는 말 그대로 산소와 접촉을 막아 발효시키는 것을 의미한다. 스테인리스로 제작된 발효탱크에는 과육을 제거한 커피콩과 점액질을 넣어 보관하게 되며, 이때 자연스럽게 발생되는 이산화탄소로 인해 탄수화물과 당을 분해하면서 다양한 성분들을 만들게 된다. 또한, 다양한 화학반응이 일어나며 완성도 높은 커피를 만들기 위해서는 철저한 관리와 기술력이 필요하다.</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <div class="form_footer">
+                    <a href="/coffee/list" class="btn">목록으로</a>
+                </div>
+                <div class="button">
+                    <button type="button" id="insert" class="btn">저장</button>
+                    <button type="button" id="update" class="btn">수정</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

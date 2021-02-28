@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"></div>
+    <link rel="stylesheet" th:href="@{/css/coffeeForm.css}">
+    <title>찰리집 : 커피 </title>
+</head>
+<body>
+    <div th:replace="fragments/board_header :: board_header"></div>
+    <!-- //header -->
+
+    <section id="content_form">
+        <div class="container">
+            <div class="row">
+                <div class="content_form">
+                    <div class="form_header">
+                        <!-- <h1 th:text="${board?.idx} ? '게시글 상세' : '게시글 등록'"></h1> -->
+                        <h1>게시글 등록</h1>
+                    </div>
+
+                    <!-- <input id="board_idx" type="hidden" th:value="${board?.idx}"/> -->
+                    <!-- <input id="board_create_date" type="hidden" th:value="${board?.createDate}"> -->
+                    <table class="table">
+                        <tr>
+                            <th>가게</th>
+                            <td colspan="5">
+                                <input type="text" id="board_store" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>메뉴</th>
+                            <td colspan="5">
+                                <input type="text" id="board_menu" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>가격</th>
+                            <td colspan="5">
+                                <input type="text" id="board_price" class="form-control">
+                            </td>
+                        </tr>
+                        <tr class="taste c1">
+                            <th>SWEET</th>
+                            <td>
+                                <input type="text" id="board_SWEET" class="form-control">
+                            </td>
+                            <th>ACIDITY</th>
+                            <td>
+                                <input type="text" id="board_ACIDITY" class="form-control">
+                            </td>
+                            <th>BODY</th>
+                            <td>
+                                <input type="text" id="board_BODY" class="form-control">
+                            </td>
+                        </tr>
+                        <tr class="taste c2">
+                            <th>BALANCE</th>
+                            <td>
+                                <input type="text" id="board_BALANCE" class="form-control">
+                            </td>
+                            <th>AFTERTASTE</th>
+                            <td>
+                                <input type="text" id="board_AFTERTASTE" class="form-control">
+                            </td>
+                            <th>AROMA</th>
+                            <td>
+                                <input type="text" id="board_AROMA" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>내용</th>
+                            <td colspan="5">
+                                <textarea id="board_content" cols="30" rows="70"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="form_footer">
+                        <a href="/coffee/list" class="btn">목록으로</a>
+                    </div>
+                    <div class="button">
+                        <button style="display:none;" type="button" id="insert" class="btn">저장</button>
+                        <button type="button" id="update" class="btn">수정</button>
+                        <button type="button" id="delete" class="btn">삭제</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //section -->
+
+</body>
+</html>
