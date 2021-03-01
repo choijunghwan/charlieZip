@@ -1,6 +1,7 @@
 package study.charlieZip.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -29,8 +30,23 @@ public class Coffee_Board extends BaseEntity{
     private int balance;
     private int aftertaste;
     private int aroma;
-    private Clob desc;
+    private String desc;
 
     @OneToMany(mappedBy = "coffee_board")
     private List<Reply> replys = new ArrayList<>();
+
+    @Builder
+    public Coffee_Board(String menu_name, int price, String store_name, int count, int sweet, int acidity, int body, int balance, int aftertaste, int aroma, String desc) {
+        this.menu_name = menu_name;
+        this.price = price;
+        this.store_name = store_name;
+        this.count = count;
+        this.sweet = sweet;
+        this.acidity = acidity;
+        this.body = body;
+        this.balance = balance;
+        this.aftertaste = aftertaste;
+        this.aroma = aroma;
+        this.desc = desc;
+    }
 }

@@ -20,6 +20,9 @@ class MemberServiceTest {
     @Autowired
     MemberJpaRepository memberJpaRepository;
 
+    /**
+     * 회원가입
+     */
     @Test
     public void join() {
 
