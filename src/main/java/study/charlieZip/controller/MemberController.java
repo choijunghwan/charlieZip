@@ -31,8 +31,6 @@ public class MemberController {
     @GetMapping(value = "/members/new")
     public String createForm(Model model) {
         model.addAttribute("memberForm", new MemberForm());
-        Gender[] sexs = Gender.values();
-        model.addAttribute("sexs", sexs);
         return "members/createMemberForm";
     }
 
