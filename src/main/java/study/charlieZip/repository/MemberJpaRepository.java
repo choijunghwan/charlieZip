@@ -4,7 +4,6 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import study.charlieZip.entity.Member;
-import study.charlieZip.entity.QMember;
 
 import javax.persistence.EntityManager;
 import java.util.List;

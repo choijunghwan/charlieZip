@@ -38,8 +38,11 @@
                     <a href="/coffee/list" class="btn">목록으로</a>
                 </div>
                 <div class="button">
-                    <button type="button" id="update" class="btn">수정</button>
-                    <button type="button" id="delete" class="btn">삭제</button>
+                    <a th:href="@{'/coffee/' + ${coffeeBoardDto.id} + '/edit' }" class="btn">수정</a>
+                    <form th:action="@{'/coffee/' + ${coffeeBoardDto.id} }" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <button>삭제</button>
+                    </form>
                 </div>
             </div>
         </div>

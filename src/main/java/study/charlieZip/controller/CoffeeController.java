@@ -3,6 +3,7 @@ package study.charlieZip.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +37,7 @@ public class CoffeeController {
         Coffee_Board board = coffeeService.findOne(boardId);
 
         CoffeeBoardDto coffeeBoardDto = CoffeeBoardDto.builder()
+                .id(board.getId())
                 .store_name(board.getStore_name())
                 .menu_name(board.getMenu_name())
                 .price(board.getPrice())
@@ -71,6 +73,41 @@ public class CoffeeController {
                 .build();
 
         coffeeService.savePost(coffee_board);
+        return "redirect:/coffee/list";
+    }
+
+    /**
+     * 게시물 수정
+     */
+    @GetMapping("coffee/{boardId}/edit")
+    public String update(@PathVariable("boardId") Long boardId, Model model) {
+        Coffee_Board board = coffeeService.findOne(boardId);
+
+        CoffeeBoardDto coffeeBoardDto = CoffeeBoardDto.builder()
+                .id(board.getId())
+                .store_name(board.getStore_name())
+                .menu_name(board.getMenu_name())
+                .price(board.getPrice())
+                .sweet(board.getSweet())
+                .acidity(board.getAcidity())
+                .body(board.getBody())
+                .balance(board.getBalance())
+                .aftertaste(board.getAftertaste())
+                .aroma(board.getAroma())
+                .desc(board.getDesc())
+                .build();
+
+        model.addAttribute("board", coffeeBoardDto);
+        return "coffee/createCoffeeForm";
+    }
+
+    /**
+     * 게시글 삭제
+     */
+    @PostMapping("/coffee/{boardId}")
+    public String delete(@PathVariable("boardId") Long boardId) {
+        coffeeService.deletePost(boardId);
+
         return "redirect:/coffee/list";
     }
 }

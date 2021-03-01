@@ -37,4 +37,12 @@ public class CoffeeService {
     public Coffee_Board findOne(Long coffee_board_id) {
         return coffeeRepository.findById(coffee_board_id).orElseThrow(IllegalArgumentException::new);
     }
+
+    /**
+     * 게시글 삭제
+     */
+    @Transactional
+    public void deletePost(Long id) {
+        coffeeRepository.deleteById(id);
+    }
 }
