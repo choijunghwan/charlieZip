@@ -27,7 +27,7 @@ public class CoffeeService {
     /**
      * 게시글 목록 조회
      */
-    public List<Coffee_Board> findPost() {
+    public List<Coffee_Board> findPosts() {
         return coffeeRepository.findAll();
     }
 

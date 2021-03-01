@@ -17,19 +17,19 @@
                         <img src="/img/coffeetaste.jpg" alt="커피맛">
                     </div>
                     <div class="content_right">
-                        <p>벙커컴퍼니</p>
+                        <p th:text="${coffeeBoardDto.store_name}"></p>
                         <div class="info">
                             <dl class="list">
-                                <dt class="tit">메뉴</dt>
-                                <dd class="desc">아메리카노</dd>
+                                <dt class="tit" >메뉴</dt>
+                                <dd class="desc" th:text="${coffeeBoardDto.menu_name}"></dd>
                             </dl>
                             <dl class="list">
                                 <dt class="tit">가격</dt>
-                                <dd class="desc">5500원</dd>
+                                <dd class="desc" th:text="${coffeeBoardDto.price}"></dd>
                             </dl>
                             <dl class="list">
                                 <dt class="tit">내용</dt>
-                                <dd class="desc">무산소 발효는 말 그대로 산소와 접촉을 막아 발효시키는 것을 의미한다. 스테인리스로 제작된 발효탱크에는 과육을 제거한 커피콩과 점액질을 넣어 보관하게 되며, 이때 자연스럽게 발생되는 이산화탄소로 인해 탄수화물과 당을 분해하면서 다양한 성분들을 만들게 된다. 또한, 다양한 화학반응이 일어나며 완성도 높은 커피를 만들기 위해서는 철저한 관리와 기술력이 필요하다.</dd>
+                                <dd class="desc" th:text="${coffeeBoardDto.desc}"></dd>
                             </dl>
                         </div>
                     </div>
@@ -38,8 +38,8 @@
                     <a href="/coffee/list" class="btn">목록으로</a>
                 </div>
                 <div class="button">
-                    <button type="button" id="insert" class="btn">저장</button>
                     <button type="button" id="update" class="btn">수정</button>
+                    <button type="button" id="delete" class="btn">삭제</button>
                 </div>
             </div>
         </div>

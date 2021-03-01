@@ -15,129 +15,130 @@
                 <div class="content">
                     <div class="content_title">
                         <h2>게시판</h2>
-                        <a href="/coffee/form" class="btn">등록</a>
+                        <a href="/coffee/new" class="btn">등록</a>
                     </div>
                     <div class="gallery clearfix">
-                        <div class="item">
+
+                        <div class="item" th:each="board : ${boardList}">
                             <div class="post">
                                 <img src="/img/coffeetaste.jpg" alt="커피맛">
                             </div>
                             <div class="infor">
-                                <h3>벙커컴퍼니1</h3>
+                                <h3 th:text="${board.store_name}"></h3>
                                 <ul class="clearfix">
-                                    <li class="line">아메리카노</li>
-                                    <li>5500</li>
+                                    <li class="line" th:text="${board.menu_name}"></li>
+                                    <li th:text="${board.price}"></li>
                                 </ul>
                                 <div class="infor_btn">
-                                    <a href="#"><span>자세히보기</span></a>
+                                    <a th:href="@{'/coffee/view/' + ${board.id}}"><span>자세히보기</span></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="post">
-                                <img src="/img/coffeetaste.jpg" alt="커피맛">
-                            </div>
-                            <div class="infor">
-                                <h3>벙커컴퍼니2</h3>
-                                <ul class="clearfix">
-                                    <li class="line">아메리카노</li>
-                                    <li>5500</li>
-                                </ul>
-                                <div class="infor_btn">
-                                    <a href="#"><span>자세히보기</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="post">
-                                <img src="/img/coffeetaste.jpg" alt="커피맛">
-                            </div>
-                            <div class="infor">
-                                <h3>벙커컴퍼니3</h3>
-                                <ul class="clearfix">
-                                    <li class="line">아메리카노</li>
-                                    <li>5500</li>
-                                </ul>
-                                <div class="infor_btn">
-                                    <a href="#"><span>자세히보기</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="post">
-                                <img src="/img/coffeetaste.jpg" alt="커피맛">
-                            </div>
-                            <div class="infor">
-                                <h3>벙커컴퍼니4</h3>
-                                <ul class="clearfix">
-                                    <li class="line">아메리카노</li>
-                                    <li>5500</li>
-                                </ul>
-                                <div class="infor_btn">
-                                    <a href="#"><span>자세히보기</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="post">
-                                <img src="/img/coffeetaste.jpg" alt="커피맛">
-                            </div>
-                            <div class="infor">
-                                <h3>벙커컴퍼니5</h3>
-                                <ul class="clearfix">
-                                    <li class="line">아메리카노</li>
-                                    <li>5500</li>
-                                </ul>
-                                <div class="infor_btn">
-                                    <a href="#"><span>자세히보기</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="post">
-                                <img src="/img/coffeetaste.jpg" alt="커피맛">
-                            </div>
-                            <div class="infor">
-                                <h3>벙커컴퍼니6</h3>
-                                <ul class="clearfix">
-                                    <li class="line">아메리카노</li>
-                                    <li>5500</li>
-                                </ul>
-                                <div class="infor_btn">
-                                    <a href="#"><span>자세히보기</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="post">
-                                <img src="/img/coffeetaste.jpg" alt="커피맛">
-                            </div>
-                            <div class="infor">
-                                <h3>벙커컴퍼니7</h3>
-                                <ul class="clearfix">
-                                    <li class="line">아메리카노</li>
-                                    <li>5500</li>
-                                </ul>
-                                <div class="infor_btn">
-                                    <a href="#"><span>자세히보기</span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="post">
-                                <img src="/img/coffeetaste.jpg" alt="커피맛">
-                            </div>
-                            <div class="infor">
-                                <h3>벙커컴퍼니8</h3>
-                                <ul class="clearfix">
-                                    <li class="line">아메리카노</li>
-                                    <li>5500</li>
-                                </ul>
-                                <div class="infor_btn">
-                                    <a href="#"><span>자세히보기</span></a>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="item">-->
+<!--                            <div class="post">-->
+<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
+<!--                            </div>-->
+<!--                            <div class="infor">-->
+<!--                                <h3>벙커컴퍼니2</h3>-->
+<!--                                <ul class="clearfix">-->
+<!--                                    <li class="line">아메리카노</li>-->
+<!--                                    <li>5500</li>-->
+<!--                                </ul>-->
+<!--                                <div class="infor_btn">-->
+<!--                                    <a href="#"><span>자세히보기</span></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item">-->
+<!--                            <div class="post">-->
+<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
+<!--                            </div>-->
+<!--                            <div class="infor">-->
+<!--                                <h3>벙커컴퍼니3</h3>-->
+<!--                                <ul class="clearfix">-->
+<!--                                    <li class="line">아메리카노</li>-->
+<!--                                    <li>5500</li>-->
+<!--                                </ul>-->
+<!--                                <div class="infor_btn">-->
+<!--                                    <a href="#"><span>자세히보기</span></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item">-->
+<!--                            <div class="post">-->
+<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
+<!--                            </div>-->
+<!--                            <div class="infor">-->
+<!--                                <h3>벙커컴퍼니4</h3>-->
+<!--                                <ul class="clearfix">-->
+<!--                                    <li class="line">아메리카노</li>-->
+<!--                                    <li>5500</li>-->
+<!--                                </ul>-->
+<!--                                <div class="infor_btn">-->
+<!--                                    <a href="#"><span>자세히보기</span></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item">-->
+<!--                            <div class="post">-->
+<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
+<!--                            </div>-->
+<!--                            <div class="infor">-->
+<!--                                <h3>벙커컴퍼니5</h3>-->
+<!--                                <ul class="clearfix">-->
+<!--                                    <li class="line">아메리카노</li>-->
+<!--                                    <li>5500</li>-->
+<!--                                </ul>-->
+<!--                                <div class="infor_btn">-->
+<!--                                    <a href="#"><span>자세히보기</span></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item">-->
+<!--                            <div class="post">-->
+<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
+<!--                            </div>-->
+<!--                            <div class="infor">-->
+<!--                                <h3>벙커컴퍼니6</h3>-->
+<!--                                <ul class="clearfix">-->
+<!--                                    <li class="line">아메리카노</li>-->
+<!--                                    <li>5500</li>-->
+<!--                                </ul>-->
+<!--                                <div class="infor_btn">-->
+<!--                                    <a href="#"><span>자세히보기</span></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item">-->
+<!--                            <div class="post">-->
+<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
+<!--                            </div>-->
+<!--                            <div class="infor">-->
+<!--                                <h3>벙커컴퍼니7</h3>-->
+<!--                                <ul class="clearfix">-->
+<!--                                    <li class="line">아메리카노</li>-->
+<!--                                    <li>5500</li>-->
+<!--                                </ul>-->
+<!--                                <div class="infor_btn">-->
+<!--                                    <a href="#"><span>자세히보기</span></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item">-->
+<!--                            <div class="post">-->
+<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
+<!--                            </div>-->
+<!--                            <div class="infor">-->
+<!--                                <h3>벙커컴퍼니8</h3>-->
+<!--                                <ul class="clearfix">-->
+<!--                                    <li class="line">아메리카노</li>-->
+<!--                                    <li>5500</li>-->
+<!--                                </ul>-->
+<!--                                <div class="infor_btn">-->
+<!--                                    <a href="#"><span>자세히보기</span></a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
