@@ -1,12 +1,11 @@
 package study.charlieZip.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import study.charlieZip.dto.CoffeeBoardDto;
 import study.charlieZip.entity.Coffee_Board;
 import study.charlieZip.service.CoffeeService;
@@ -77,7 +76,7 @@ public class CoffeeController {
     }
 
     /**
-     * 게시물 수정
+     * 게시물 수정 폼
      */
     @GetMapping("coffee/{boardId}/edit")
     public String update(@PathVariable("boardId") Long boardId, Model model) {
@@ -99,6 +98,15 @@ public class CoffeeController {
 
         model.addAttribute("board", coffeeBoardDto);
         return "coffee/createCoffeeForm";
+    }
+
+    /**
+     * 게시글 수정
+     */
+    @PutMapping("/coffee/{boardId}/edit")
+    public ResponseEntity<?> update(@PathVariable("boardId") Long boardId, @RequestBody CoffeeBoardDto board) {
+        coffeeService.updatePost(boardId, board);
+        return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 
     /**
