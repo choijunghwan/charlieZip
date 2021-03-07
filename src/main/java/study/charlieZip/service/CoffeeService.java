@@ -47,24 +47,4 @@ public class CoffeeService {
         coffeeRepository.deleteById(id);
     }
 
-    /**
-     * 게시글 수정
-     */
-    @Transactional
-    public void updatePost(Long id, CoffeeBoardDto boardDto) {
-        Coffee_Board findPost = coffeeRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        findPost = Coffee_Board.builder()
-                .store_name(boardDto.getStore_name())
-                .menu_name(boardDto.getMenu_name())
-                .price(boardDto.getPrice())
-                .sweet(boardDto.getSweet())
-                .acidity(boardDto.getAcidity())
-                .body(boardDto.getBody())
-                .balance(boardDto.getBalance())
-                .aftertaste(boardDto.getAftertaste())
-                .aroma(boardDto.getAroma())
-                .desc(boardDto.getDesc())
-                .build();
-
-    }
 }

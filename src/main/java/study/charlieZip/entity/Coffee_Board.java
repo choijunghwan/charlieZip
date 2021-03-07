@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Coffee_Board extends BaseEntity{
 
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "coffee_board_id")
     private Long id;
 
@@ -36,7 +36,8 @@ public class Coffee_Board extends BaseEntity{
     private List<Reply> replys = new ArrayList<>();
 
     @Builder
-    public Coffee_Board(String menu_name, int price, String store_name, int count, int sweet, int acidity, int body, int balance, int aftertaste, int aroma, String desc) {
+    public Coffee_Board(Long id, String menu_name, int price, String store_name, int count, int sweet, int acidity, int body, int balance, int aftertaste, int aroma, String desc) {
+        this.id = id;
         this.menu_name = menu_name;
         this.price = price;
         this.store_name = store_name;

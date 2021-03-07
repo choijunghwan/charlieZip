@@ -15,9 +15,9 @@ public class Member {
 
     /**
      * GeneratedValue는 기본키를 자동생성해주는데 DB마다 전략이 달라 4가지 전략을 제공한다.
-     * 나는 H2를 사용하므로 시퀀스를 이용해 기본 키를 제공하는 전략 SEQUENCE를 선택했다.
+     * 나는 H2를 사용하므로 시퀀스를 이용해 기본 키를 제공하는 전략 IDENTITY를 선택했다.
      */
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
 

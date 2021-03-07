@@ -11,6 +11,8 @@ import study.charlieZip.dto.CoffeeBoardDto;
 import study.charlieZip.entity.Coffee_Board;
 import study.charlieZip.service.CoffeeService;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -109,10 +111,10 @@ public class CoffeeController {
     @ResponseBody
     @RequestMapping(value = "/coffee/{boardId}/edit", method = RequestMethod.POST)
     public String update(@PathVariable("boardId") Long boardId, @RequestBody CoffeeBoardDto board) {
-        log.debug(board.getStore_name() + "," + board.getMenu_name() + "," + board.getPrice());
-
         Coffee_Board findPost = coffeeService.findOne(boardId);
+
         findPost = Coffee_Board.builder()
+                .id(boardId)
                 .store_name(board.getStore_name())
                 .menu_name(board.getMenu_name())
                 .price(board.getPrice())
@@ -137,4 +139,5 @@ public class CoffeeController {
 
         return "redirect:/coffee/list";
     }
+
 }

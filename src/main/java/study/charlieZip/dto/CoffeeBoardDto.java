@@ -24,6 +24,7 @@ public class CoffeeBoardDto {
     private int aroma;
     private String desc;
 
+
     @Builder
     public CoffeeBoardDto(Long id, String store_name, String menu_name, int price, int sweet, int acidity, int body, int balance, int aftertaste, int aroma, String desc) {
         this.id = id;
@@ -38,5 +39,4 @@ public class CoffeeBoardDto {
         this.aroma = aroma;
         this.desc = desc;
     }
-
 }
