@@ -24,13 +24,8 @@ public class CoffeeBoardDto {
     private int aroma;
     private String desc;
 
-    private LocalDateTime createDate;
-    private LocalDateTime lastModifiedDate;
-    private String lastModifiedBy;
-
-
     @Builder
-    public CoffeeBoardDto(Long id, String store_name, String menu_name, int price, int sweet, int acidity, int body, int balance, int aftertaste, int aroma, String desc, LocalDateTime createDate, LocalDateTime lastModifiedDate, String lastModifiedBy) {
+    public CoffeeBoardDto(Long id, String store_name, String menu_name, int price, int sweet, int acidity, int body, int balance, int aftertaste, int aroma, String desc) {
         this.id = id;
         this.store_name = store_name;
         this.menu_name = menu_name;
@@ -42,8 +37,6 @@ public class CoffeeBoardDto {
         this.aftertaste = aftertaste;
         this.aroma = aroma;
         this.desc = desc;
-        this.createDate = createDate;
-        this.lastModifiedDate = lastModifiedDate;
-        this.lastModifiedBy = lastModifiedBy;
     }
+
 }

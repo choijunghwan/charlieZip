@@ -1,6 +1,7 @@
 package study.charlieZip.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,9 +12,11 @@ import study.charlieZip.entity.Coffee_Board;
 import study.charlieZip.service.CoffeeService;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class CoffeeController {
 
     private final CoffeeService coffeeService;
@@ -103,10 +106,26 @@ public class CoffeeController {
     /**
      * 게시글 수정
      */
-    @PutMapping("/coffee/{boardId}/edit")
-    public ResponseEntity<?> update(@PathVariable("boardId") Long boardId, @RequestBody CoffeeBoardDto board) {
-        coffeeService.updatePost(boardId, board);
-        return new ResponseEntity<>("{}", HttpStatus.OK);
+    @ResponseBody
+    @RequestMapping(value = "/coffee/{boardId}/edit", method = RequestMethod.POST)
+    public String update(@PathVariable("boardId") Long boardId, @RequestBody CoffeeBoardDto board) {
+        log.debug(board.getStore_name() + "," + board.getMenu_name() + "," + board.getPrice());
+
+        Coffee_Board findPost = coffeeService.findOne(boardId);
+        findPost = Coffee_Board.builder()
+                .store_name(board.getStore_name())
+                .menu_name(board.getMenu_name())
+                .price(board.getPrice())
+                .sweet(board.getSweet())
+                .acidity(board.getAcidity())
+                .body(board.getBody())
+                .balance(board.getBalance())
+                .aftertaste(board.getAftertaste())
+                .aroma(board.getAroma())
+                .desc(board.getDesc())
+                .build();
+        coffeeService.savePost(findPost);
+        return board.getStore_name();
     }
 
     /**
