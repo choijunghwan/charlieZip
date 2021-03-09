@@ -1,6 +1,7 @@
 package study.charlieZip.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +20,20 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    /**
+     * 로그인 페이지
+     */
     @GetMapping(value = "/members/login")
     public String login() {
         return "members/memberLogin";
+    }
+
+    /**
+     * 접근 거부 페이지
+     */
+    @GetMapping(value = "/members/denied")
+    public String Denied() {
+        return "members/denied";
     }
 
     /**
@@ -35,17 +47,16 @@ public class MemberController {
     }
 
     @PostMapping(value = "/members/new")
-    public String create(@Valid MemberForm form) {
-//        Member member = new Member(form.getUsername(),
-//                                    form.getPassword(),
-//                                    form.getDate(),
-//                                    form.getGender());
+    public String create(@Valid MemberForm memberform) {
+
+        // 비밀번호 암호화
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         Member member = Member.builder()
-                .username(form.getUsername())
-                .password(form.getPassword())
-                .date(form.getDate())
-                .gender(form.getGender())
+                .username(memberform.getUsername())
+                .password(passwordEncoder.encode(memberform.getPassword()))
+                .date(memberform.getDate())
+                .gender(memberform.getGender())
                 .build();
 
         memberService.join(member);

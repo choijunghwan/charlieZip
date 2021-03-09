@@ -2,9 +2,12 @@ package study.charlieZip.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import study.charlieZip.entity.Coffee_Board;
+import study.charlieZip.entity.Gender;
+import study.charlieZip.entity.Member;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -29,6 +32,15 @@ public class initDB {
 
         @Transactional
         public void init() {
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+            Member member1 = Member.builder()
+                    .username("vkdlxj3562")
+                    .password(passwordEncoder.encode("1234"))
+                    .date("19960105")
+                    .gender(Gender.MAN)
+                    .build();
+
             Coffee_Board coffee_board1 = Coffee_Board.builder()
                     .store_name("벙커컴퍼니")
                     .menu_name("하프앤하프")
@@ -55,6 +67,7 @@ public class initDB {
                     .desc("아직 안마셔봄 ㅋㅋ")
                     .build();
 
+            em.persist(member1);
             em.persist(coffee_board1);
             em.persist(coffee_board2);
         }

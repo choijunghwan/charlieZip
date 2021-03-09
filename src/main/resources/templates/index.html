@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <div th:replace="fragments/header :: header"></div>
     <link rel="stylesheet" href="css/style.css">
@@ -13,13 +13,16 @@
                     <div class="nav">
                         <div class="nav_left clearfix">
                             <h2>
-                                <a href="#"><img src="/img/logo.jpg" alt="찰리집"></a>
+                                <a th:href="@{/}"><img src="/img/logo.jpg" alt="찰리집"></a>
                             </h2>
                         </div>
                         <div class="nav_right">
                             <ul class="clearfix">
-                                <li class="line"><a href="/members/login">로그인</a></li>
-                                <li><a href="/members/new">회원가입</a></li>
+                                <li><a class="line" sec:authorize="isAnonymous()" th:href="@{/members/login}">로그인</a></li>
+                                <li><a sec:authorize="isAnonymous()" th:href="@{members/new}">회원가입</a></li>
+                                <li><a class="line" sec:authorize="isAuthenticated()" th:href="@{/}">로그아웃</a></li>
+                                <li><a sec:authorize="hasRole('ROLE_MEMBER')" href="#">내정보</a></li>
+                                <li><a sec:authorize="hasRole('ROLE_ADMIN')" href="#">어드민</a></li>
                             </ul>
                         </div>
                         <div id="mlogin">

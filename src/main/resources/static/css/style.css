@@ -19,9 +19,9 @@
 .nav .nav_right {float: right;}
 .nav .nav_right ul {}
 .nav .nav_right ul li {float: left;}
-.nav .nav_right ul li.line {position: relative; margin-right: 30px;}
+.nav .nav_right ul li a.line {position: relative; margin-right: 30px;}
 .nav .nav_right ul li a {color: #fff; padding: 10px; font-size: 16px;}
-.nav .nav_right ul li.line::after {content: ''; width: 1px; height: 14px; background: #fff; position: absolute; right: -16px; top: 6px;}
+.nav .nav_right ul li a.line::after {content: ''; width: 1px; height: 14px; background: #fff; position: absolute; right: -16px; top: 15px;}
 
 #mlogin {position: relative;}
 #mlogin a {display: none; margin-left: 20px; font-size: 14px; padding: 3px 10px; position: absolute; top: 0; right: 8px; color: #fff;}

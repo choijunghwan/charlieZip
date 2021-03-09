@@ -1,18 +1,28 @@
 package study.charlieZip.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import study.charlieZip.dto.MemberForm;
 import study.charlieZip.entity.Member;
+import study.charlieZip.entity.Role;
 import study.charlieZip.repository.MemberJpaRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class MemberService {
+public class MemberService implements UserDetailsService {
 
     private final MemberJpaRepository memberJpaRepository;
 
@@ -21,6 +31,7 @@ public class MemberService {
      */
     @Transactional  //데이터 변경이 필요할때
     public Long join(Member member) {
+
         validateDuplicateMember(member);  //중복 회원 검증
         memberJpaRepository.save(member);
         return member.getId();
@@ -32,6 +43,23 @@ public class MemberService {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        List<Member> userEntityWrapper = memberJpaRepository.findByUsername(username);
+        Member userEntity = userEntityWrapper.get(0);
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+        if (("vkdlxj3562").equals(username)) {
+            authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
+        } else {
+            authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
+        }
+
+        return new User(userEntity.getUsername(), userEntity.getPassword(), authorities);
+    }
+
 
     /**
      * 전체 회원 조회
