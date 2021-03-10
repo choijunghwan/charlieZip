@@ -26,6 +26,7 @@ body {background: #f5f6f7;}
 .join_row .join_title {font-size: 14px; font-weight: 700; margin: 19px 0 8px;}
 .join_row input {background: #fff; outline: 0;}
 .join_row .input_text {display: block; width: 100%; box-sizing: border-box; height: 50px; font-size: 15px; border: solid 1px #dadada; padding: 10px 110px 10px 14px;}
+.join_row span {color: #ff0000;}
 .join_row .box {display: block; width: 100%; box-sizing: border-box; height: 50px; font-size: 15px; border: solid 1px #dadada; padding: 10px 110px 10px 14px; background: #fff; padding-right: 10px;}
 .join_row .box .sel {width: 100%; border: none; color: #000; border-radius: 0;}
 .join_btn {display: block; width: 100%; margin: 30px 0 9px; font-size: 18px; padding: 15px 0 15px; text-align: center; cursor: pointer;}
