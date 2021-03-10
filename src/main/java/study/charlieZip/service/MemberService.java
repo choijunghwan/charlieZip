@@ -10,14 +10,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import study.charlieZip.dto.MemberForm;
 import study.charlieZip.entity.Member;
 import study.charlieZip.entity.Role;
 import study.charlieZip.repository.MemberJpaRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional(readOnly = true)
@@ -44,6 +44,12 @@ public class MemberService implements UserDetailsService {
         }
     }
 
+    /**
+     * Spring Security를 이용해 로그인할때 권한을 부여해주는것인데.
+     * 이 프로젝트에서는 "vkdlxj3562"이라는 아이디만 ADMIN 권한을 가지게 하였다.
+     * @return 사용자의 (아이디, 비밀번호, 권한)
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<Member> userEntityWrapper = memberJpaRepository.findByUsername(username);
@@ -88,4 +94,17 @@ public class MemberService implements UserDetailsService {
         return memberJpaRepository.findById(memberId).orElseThrow(IllegalArgumentException::new);
     }
 
+    /**
+     * 회원가입시, 유효성 체크
+     */
+    public Map<String, String> validateHandling(Errors errors) {
+        Map<String, String> validatorResult = new HashMap<>();
+
+        for (FieldError error : errors.getFieldErrors()) {
+            String validKeyName = String.format("valid_%s", error.getField());
+            validatorResult.put(validKeyName, error.getDefaultMessage());
+        }
+
+        return validatorResult;
+    }
 }

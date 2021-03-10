@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import study.charlieZip.entity.Member;
 import study.charlieZip.service.MemberService;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -37,7 +39,7 @@ public class MemberController {
     }
 
     /**
-     * 회원가입
+     * 회원가입 페이지 폼
      */
     // Get방식을 이용해 화면으로 데이터 MemberForm을 넘김
     @GetMapping(value = "/members/new")
@@ -46,8 +48,23 @@ public class MemberController {
         return "members/createMemberForm";
     }
 
+    /**
+     * 회원가입
+     */
     @PostMapping(value = "/members/new")
-    public String create(@Valid MemberForm memberform) {
+    public String create(@Valid MemberForm memberform, Errors errors, Model model) {
+        if (errors.hasErrors()) {
+            //회원가입 실패시, 입력 데이터를 유지
+            model.addAttribute("memberForm", memberform);
+
+            // 유효성 통과 못한 필드와 메시지 핸들링
+            Map<String, String> validatorResult = memberService.validateHandling(errors);
+            for (String key : validatorResult.keySet()) {
+                model.addAttribute(key, validatorResult.get(key));
+            }
+
+            return "members/createMemberForm";
+        }
 
         // 비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
