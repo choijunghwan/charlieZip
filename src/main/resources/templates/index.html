@@ -20,7 +20,7 @@
                             <ul class="clearfix">
                                 <li><a class="line" sec:authorize="isAnonymous()" th:href="@{/members/login}">로그인</a></li>
                                 <li><a sec:authorize="isAnonymous()" th:href="@{members/new}">회원가입</a></li>
-                                <li><a class="line" sec:authorize="isAuthenticated()" th:href="@{/}">로그아웃</a></li>
+                                <li><a class="line" sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a></li>
                                 <li><a sec:authorize="hasRole('ROLE_MEMBER')" href="#">내정보</a></li>
                                 <li><a sec:authorize="hasRole('ROLE_ADMIN')" href="#">어드민</a></li>
                             </ul>
