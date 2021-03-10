@@ -6,11 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import study.charlieZip.dto.CoffeeBoardDto;
 import study.charlieZip.entity.Coffee_Board;
 import study.charlieZip.service.CoffeeService;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +55,7 @@ public class CoffeeController {
     }
 
     /**
-     * 게시글 등록
+     * 게시글 등록 폼
      */
     @GetMapping("coffee/new")
     public String write(Model model) {
@@ -61,8 +63,24 @@ public class CoffeeController {
         return "coffee/createCoffeeForm";
     }
 
+    /**
+     * 게시글 등록
+     */
     @PostMapping("coffee/new")
-    public String write(CoffeeBoardDto coffeeBoardDto) {
+    public String write(@Valid CoffeeBoardDto coffeeBoardDto, Errors errors, Model model) {
+        if (errors.hasErrors()) {
+            // 게시글 작성 실패시, 데이터 유지
+            model.addAttribute("board", coffeeBoardDto);
+
+            // 유효성 통과 못한 필드와 메시지 핸들링
+            Map<String, String> validtorResult = coffeeService.validateHandling(errors);
+            for (String key : validtorResult.keySet()) {
+                model.addAttribute(key, validtorResult.get(key));
+            }
+
+            return "coffee/createCoffeeForm";
+        }
+
         Coffee_Board coffee_board = Coffee_Board.builder()
                 .store_name(coffeeBoardDto.getStore_name())
                 .menu_name(coffeeBoardDto.getMenu_name())

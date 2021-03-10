@@ -24,6 +24,7 @@
                                 <th>가게</th>
                                 <td colspan="5">
                                     <input type="text" th:field="*{store_name}" id="board_store" class="form-control">
+                                    <span th:text="${valid_store_name}"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -42,33 +43,40 @@
                                 <th>SWEET</th>
                                 <td>
                                     <input type="number" th:field="*{sweet}" id="board_SWEET" class="form-control">
+                                    <span th:text="${valid_sweet}"></span>
                                 </td>
                                 <th>ACIDITY</th>
                                 <td>
                                     <input type="number" th:field="*{acidity}" id="board_ACIDITY" class="form-control">
+                                    <span th:text="${valid_acidity}"></span>
                                 </td>
                                 <th>BODY</th>
                                 <td>
                                     <input type="number" th:field="*{body}" id="board_BODY" class="form-control">
+                                    <span th:text="${valid_body}"></span>
                                 </td>
                             </tr>
                             <tr class="taste c2">
                                 <th>BALANCE</th>
                                 <td>
                                     <input type="number" th:field="*{balance}" id="board_BALANCE" class="form-control">
+                                    <span th:text="${valid_balance}"></span>
                                 </td>
                                 <th>AFTERTASTE</th>
                                 <td>
                                     <input type="number" th:field="*{aftertaste}" id="board_AFTERTASTE" class="form-control">
+                                    <span th:text="${valid_aftertaste}"></span>
                                 </td>
                                 <th>AROMA</th>
                                 <td>
                                     <input type="number" th:field="*{aroma}" id="board_AROMA" class="form-control">
+                                    <span th:text="${valid_aroma}"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <th>내용</th>
                                 <td colspan="5">
+                                    <span th:text="${valid_desc}"></span>
                                     <textarea id="board_content" th:field="*{desc}" cols="30" rows="70"></textarea>
                                 </td>
                             </tr>
