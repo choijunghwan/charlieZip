@@ -41,35 +41,50 @@ public class initDB {
                     .gender(Gender.MAN)
                     .build();
 
-            Coffee_Board coffee_board1 = Coffee_Board.builder()
-                    .store_name("벙커컴퍼니")
-                    .menu_name("하프앤하프")
-                    .price(7000)
-                    .sweet(50)
-                    .acidity(10)
-                    .body(50)
-                    .balance(50)
-                    .aftertaste(30)
-                    .aroma(20)
-                    .desc("식물성 크림과 동물성크림을 섞어 만든 달달한 아인슈페너 느낌")
-                    .build();
+//            Coffee_Board coffee_board1 = Coffee_Board.builder()
+//                    .store_name("벙커컴퍼니")
+//                    .menu_name("하프앤하프")
+//                    .price(7000)
+//                    .sweet(50)
+//                    .acidity(10)
+//                    .body(50)
+//                    .balance(50)
+//                    .aftertaste(30)
+//                    .aroma(20)
+//                    .desc("식물성 크림과 동물성크림을 섞어 만든 달달한 아인슈페너 느낌")
+//                    .build();
+//
+//            Coffee_Board coffee_board2 = Coffee_Board.builder()
+//                    .store_name("커피몽타주")
+//                    .menu_name("아메리카노")
+//                    .price(4000)
+//                    .sweet(30)
+//                    .acidity(20)
+//                    .body(40)
+//                    .balance(50)
+//                    .aftertaste(40)
+//                    .aroma(40)
+//                    .desc("아직 안마셔봄 ㅋㅋ")
+//                    .build();
 
-            Coffee_Board coffee_board2 = Coffee_Board.builder()
-                    .store_name("커피몽타주")
-                    .menu_name("아메리카노")
-                    .price(4000)
-                    .sweet(30)
-                    .acidity(20)
-                    .body(40)
-                    .balance(50)
-                    .aftertaste(40)
-                    .aroma(40)
-                    .desc("아직 안마셔봄 ㅋㅋ")
-                    .build();
-
+            for (int i = 0; i < 78; i++) {
+                Coffee_Board coffee_board = Coffee_Board.builder()
+                        .store_name("벙커컴퍼니" + i)
+                        .menu_name("하프앤하프")
+                        .price(7000)
+                        .sweet(50)
+                        .acidity(10)
+                        .body(50)
+                        .balance(50)
+                        .aftertaste(30)
+                        .aroma(20)
+                        .desc("식물성 크림과 동물성크림을 섞어 만든 달달한 아인슈페너 느낌")
+                        .build();
+                em.persist(coffee_board);
+            }
             em.persist(member1);
-            em.persist(coffee_board1);
-            em.persist(coffee_board2);
+//            em.persist(coffee_board1);
+//            em.persist(coffee_board2);
         }
     }
 }

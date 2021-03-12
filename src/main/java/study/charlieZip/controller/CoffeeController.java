@@ -2,6 +2,7 @@ package study.charlieZip.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import study.charlieZip.dto.CoffeeBoardDto;
+import study.charlieZip.dto.CoffeePageDto;
+import study.charlieZip.dto.Paging;
 import study.charlieZip.entity.Coffee_Board;
 import study.charlieZip.service.CoffeeService;
 
@@ -25,13 +28,24 @@ public class CoffeeController {
 
     private final CoffeeService coffeeService;
 
+
     /**
      * 게시글 목록
      */
     @GetMapping("/coffee/list")
-    public String list(Model model) {
-        List<Coffee_Board> boardList = coffeeService.findPosts();
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "1") Integer pageNum) {
+//        List<Coffee_Board> boardList = coffeeService.findPosts();
+//        model.addAttribute("boardList", boardList);
+
+        Page<CoffeePageDto> postPaging = coffeeService.getPostPaging(pageNum);
+        // 페이징한 게시글 목록들을 찾고
+        List<CoffeePageDto> boardList = postPaging.getContent();
         model.addAttribute("boardList", boardList);
+
+        Paging pageList = coffeeService.getPageList(pageNum);
+        model.addAttribute("pageList", pageList);
+
+
         return "coffee/coffeeList";
     }
 

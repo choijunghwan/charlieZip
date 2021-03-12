@@ -18,7 +18,6 @@
                         <a href="/coffee/new" class="btn">등록</a>
                     </div>
                     <div class="gallery clearfix">
-
                         <div class="item" th:each="board : ${boardList}">
                             <div class="post">
                                 <img src="/img/coffeetaste.jpg" alt="커피맛">
@@ -34,111 +33,23 @@
                                 </div>
                             </div>
                         </div>
-<!--                        <div class="item">-->
-<!--                            <div class="post">-->
-<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
-<!--                            </div>-->
-<!--                            <div class="infor">-->
-<!--                                <h3>벙커컴퍼니2</h3>-->
-<!--                                <ul class="clearfix">-->
-<!--                                    <li class="line">아메리카노</li>-->
-<!--                                    <li>5500</li>-->
-<!--                                </ul>-->
-<!--                                <div class="infor_btn">-->
-<!--                                    <a href="#"><span>자세히보기</span></a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="item">-->
-<!--                            <div class="post">-->
-<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
-<!--                            </div>-->
-<!--                            <div class="infor">-->
-<!--                                <h3>벙커컴퍼니3</h3>-->
-<!--                                <ul class="clearfix">-->
-<!--                                    <li class="line">아메리카노</li>-->
-<!--                                    <li>5500</li>-->
-<!--                                </ul>-->
-<!--                                <div class="infor_btn">-->
-<!--                                    <a href="#"><span>자세히보기</span></a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="item">-->
-<!--                            <div class="post">-->
-<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
-<!--                            </div>-->
-<!--                            <div class="infor">-->
-<!--                                <h3>벙커컴퍼니4</h3>-->
-<!--                                <ul class="clearfix">-->
-<!--                                    <li class="line">아메리카노</li>-->
-<!--                                    <li>5500</li>-->
-<!--                                </ul>-->
-<!--                                <div class="infor_btn">-->
-<!--                                    <a href="#"><span>자세히보기</span></a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="item">-->
-<!--                            <div class="post">-->
-<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
-<!--                            </div>-->
-<!--                            <div class="infor">-->
-<!--                                <h3>벙커컴퍼니5</h3>-->
-<!--                                <ul class="clearfix">-->
-<!--                                    <li class="line">아메리카노</li>-->
-<!--                                    <li>5500</li>-->
-<!--                                </ul>-->
-<!--                                <div class="infor_btn">-->
-<!--                                    <a href="#"><span>자세히보기</span></a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="item">-->
-<!--                            <div class="post">-->
-<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
-<!--                            </div>-->
-<!--                            <div class="infor">-->
-<!--                                <h3>벙커컴퍼니6</h3>-->
-<!--                                <ul class="clearfix">-->
-<!--                                    <li class="line">아메리카노</li>-->
-<!--                                    <li>5500</li>-->
-<!--                                </ul>-->
-<!--                                <div class="infor_btn">-->
-<!--                                    <a href="#"><span>자세히보기</span></a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="item">-->
-<!--                            <div class="post">-->
-<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
-<!--                            </div>-->
-<!--                            <div class="infor">-->
-<!--                                <h3>벙커컴퍼니7</h3>-->
-<!--                                <ul class="clearfix">-->
-<!--                                    <li class="line">아메리카노</li>-->
-<!--                                    <li>5500</li>-->
-<!--                                </ul>-->
-<!--                                <div class="infor_btn">-->
-<!--                                    <a href="#"><span>자세히보기</span></a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="item">-->
-<!--                            <div class="post">-->
-<!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
-<!--                            </div>-->
-<!--                            <div class="infor">-->
-<!--                                <h3>벙커컴퍼니8</h3>-->
-<!--                                <ul class="clearfix">-->
-<!--                                    <li class="line">아메리카노</li>-->
-<!--                                    <li>5500</li>-->
-<!--                                </ul>-->
-<!--                                <div class="infor_btn">-->
-<!--                                    <a href="#"><span>자세히보기</span></a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                    </div>
+                    <div class="paging" style="text-align: center;">
+                        <span th:object="${pageList}" th:inline="text">
+                            <ul th:with="startNumber=${pageList.blockStartNum},
+                                        endNumber=${pageList.blockLastNum}">
+                                <li th:style="${startNumber} < 5 ? 'display:none'">
+                                    <a th:href="@{/coffee/list/(page=${startNumber} - 1) }">◀</a>
+                                </li>
+                                <li th:each="pageNum : ${#numbers.sequence(startNumber,endNumber)}"
+                                    th:class="(${pageNum} == ${pageList.nowPageNum}) ? 'active'">
+                                    <a th:href="@{'/coffee/list/?page=' + ${pageNum}}" th:text="${pageNum}"></a>
+                                </li>
+                                <li th:style="${pageList.lastPageNum} <= ${endNumber} ? 'display:none'">
+                                    <a th:href="@{/coffee/list/(page=${endNumber} + 1) }">▶</a>
+                                </li>
+                            </ul>
+                        </span>
                     </div>
                 </div>
             </div>
