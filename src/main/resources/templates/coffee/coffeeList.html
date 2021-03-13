@@ -17,6 +17,13 @@
                         <h2>게시판</h2>
                         <a href="/coffee/new" class="btn">등록</a>
                     </div>
+                    <div class="content_search" >
+                        <form th:action="@{/coffee/list}" th:object="${coffeeSearch}" method="GET">
+                            <input type="text" id="store_name" class="input_text" th:field="*{store_name}" placeholder="가게이름">
+                            <input type="text" id="menu_name" class="input_text" th:field="*{menu_name}" placeholder="메뉴이름">
+                            <button type="submit" class="btn">검색</button>
+                        </form>
+                    </div>
                     <div class="gallery clearfix">
                         <div class="item" th:each="board : ${boardList}">
                             <div class="post">

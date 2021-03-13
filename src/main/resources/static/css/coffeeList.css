@@ -33,6 +33,11 @@ body {}
 .content .content_title a.btn {position: absolute; right: 47px; top: 73px; font-size: 14px; padding: 8px 40px; border: solid 1px #585858; border-radius: 30px;}
 .content .content_title a.btn:hover {background-color: #585858; color: #fff;}
 
+.content .content_search {padding: 10px 0 10px 10px;}
+.content .content_search .input_text {font-size: 14px; border: solid 1px #585858; border-radius: 5px; padding: 3px;}
+.content .content_search .btn {width: 50px; height: 30px;}
+.content .content_search .btn:hover {background-color: rgba(77,62,215); color: #fff;}
+
 .content .gallery {display: block; padding-bottom: 30px;}
 .content .gallery .item {float: left; width: 23%; padding: 8px;}
 .content .gallery .item .post {}
@@ -87,6 +92,10 @@ body {}
 	.content .paging ul {left: 35%;}
 }
 @media (max-width: 600px){
+    .content .content_search {padding-left: 3px;}
+    .content .content_search .input_text {font-size: 11px;}
+    .content .content_search .btn {width: 32px; height: 24px;}
+
 	.content .gallery .item {width: 48%; padding: 4px;}
 
 	.content .paging ul {left: 31%;}
@@ -96,6 +105,9 @@ body {}
 	
 	.content .content_title h2 {padding-left: 15px;}
 	.content .content_title a {right: 9px; top: 42px; padding: 5px 22px;}
+
+	.content .content_search {padding-left: 15px;}
+
 	.content .gallery .item {width: 94%; padding: 4px 16px;}
 
 	.content .paging ul {left: 27%;}

@@ -67,10 +67,25 @@ public class initDB {
 //                    .desc("아직 안마셔봄 ㅋㅋ")
 //                    .build();
 
-            for (int i = 0; i < 78; i++) {
+            for (int i = 0; i < 40; i++) {
                 Coffee_Board coffee_board = Coffee_Board.builder()
                         .store_name("벙커컴퍼니" + i)
                         .menu_name("하프앤하프")
+                        .price(7000)
+                        .sweet(50)
+                        .acidity(10)
+                        .body(50)
+                        .balance(50)
+                        .aftertaste(30)
+                        .aroma(20)
+                        .desc("식물성 크림과 동물성크림을 섞어 만든 달달한 아인슈페너 느낌")
+                        .build();
+                em.persist(coffee_board);
+            }
+            for (int i = 0; i < 40; i++) {
+                Coffee_Board coffee_board = Coffee_Board.builder()
+                        .store_name("커피몽타주" + i)
+                        .menu_name("아메리카노")
                         .price(7000)
                         .sweet(50)
                         .acidity(10)

@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import study.charlieZip.dto.CoffeeBoardDto;
 import study.charlieZip.dto.CoffeePageDto;
+import study.charlieZip.dto.CoffeeSearchCondition;
 import study.charlieZip.dto.Paging;
 import study.charlieZip.entity.Coffee_Board;
 import study.charlieZip.repository.CoffeeRepository;
@@ -45,8 +46,8 @@ public class CoffeeService {
     /**
      * 게시글 페이징 목록 출력
      */
-    public Page<CoffeePageDto> getPostPaging(Integer pageNum) {
-        return coffeeRepository.searchPage(PageRequest.of(pageNum - 1, PAGE_POST_COUNT, Sort.by(Sort.Direction.ASC, "coffee_board_id")));
+    public Page<CoffeePageDto> getPostPaging(CoffeeSearchCondition condition, Integer pageNum) {
+        return coffeeRepository.searchPage(condition, PageRequest.of(pageNum - 1, PAGE_POST_COUNT, Sort.by(Sort.Direction.ASC, "coffee_board_id")));
     }
 
 
@@ -56,8 +57,8 @@ public class CoffeeService {
     private static final int PAGE_POST_COUNT = 8;       //한 페이지에 존재하는 게시글 수
     private static final int BLOCK_PAGE_NUM_COUNT = 5;  //블럭에 존재하는 페이지 번호수
 
-    public Paging getPageList(Integer pageNum) {
-        Page<CoffeePageDto> page = coffeeRepository.searchPage(PageRequest.of(pageNum - 1, PAGE_POST_COUNT, Sort.by(Sort.Direction.ASC, "coffee_board_id")));
+    public Paging getPageList(CoffeeSearchCondition condition, Integer pageNum) {
+        Page<CoffeePageDto> page = coffeeRepository.searchPage(condition, PageRequest.of(pageNum - 1, PAGE_POST_COUNT, Sort.by(Sort.Direction.ASC, "coffee_board_id")));
 
         Paging paging = new Paging();
 
