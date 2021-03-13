@@ -4,6 +4,8 @@
     <div th:replace="fragments/header :: header"></div>
     <link rel="stylesheet" th:href="@{/css/coffeeForm.css}">
     <title>찰리집 : 커피 </title>
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
 </head>
 <body>
     <div th:replace="fragments/board_header :: board_header"></div>
@@ -17,7 +19,7 @@
                          <h1 th:text="${board?.id} ? '게시글 수정' : '게시글 등록'"></h1>
                     </div>
                     <form th:action="@{/coffee/new}" th:object="${board}" method="post">
-                     <input id="board_idx" type="hidden" th:value="${board?.id}"/>
+                        <input id="board_idx" type="hidden" th:value="${board?.id}"/>
 <!--                     <input id="board_create_date" type="hidden" th:value="${board?.createDate}">-->
                         <table class="table">
                             <tr>
@@ -100,6 +102,9 @@
     <script th:if="${board?.id}" type="text/javascript">
         //수정버튼
         $("#update").click(function() {
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
             var jsonData = JSON.stringify({
                 store_name : $("#board_store").val(),
                 menu_name : $("#board_menu").val(),
@@ -110,14 +115,16 @@
                 balance : $("#board_BALANCE").val(),
                 aftertaste : $("#board_AFTERTASTE").val(),
                 aroma : $("#board_AROMA").val(),
-                desc : $("#board_content").val(),
-                createdDate : $("#board_create_date").val()
+                desc : $("#board_content").val()
             });
             $.ajax({
                 url : "http://localhost:8080/coffee/" + $("#board_idx").val() + "/edit",
                 type : "POST",
                 data : jsonData,
                 contentType : "application/json",
+                beforeSend : function(xhr){
+                    xhr.setRequestHeader(header,token);
+                },
                 success : function() {
                     alert("수정 성공!");
                     location.href = "/coffee/list";

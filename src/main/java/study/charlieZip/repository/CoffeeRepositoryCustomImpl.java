@@ -41,6 +41,7 @@ public class CoffeeRepositoryCustomImpl implements CoffeeRepositoryCustom{
                         storeNameCt(condition.getStore_name()),
                         menuNameCt(condition.getMenu_name())
                 )
+                .orderBy(coffee_Board.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetchResults();

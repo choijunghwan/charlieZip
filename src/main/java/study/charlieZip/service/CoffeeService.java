@@ -47,7 +47,7 @@ public class CoffeeService {
      * 게시글 페이징 목록 출력
      */
     public Page<CoffeePageDto> getPostPaging(CoffeeSearchCondition condition, Integer pageNum) {
-        return coffeeRepository.searchPage(condition, PageRequest.of(pageNum - 1, PAGE_POST_COUNT, Sort.by(Sort.Direction.ASC, "coffee_board_id")));
+        return coffeeRepository.searchPage(condition, PageRequest.of(pageNum - 1, PAGE_POST_COUNT, Sort.by(Sort.Direction.DESC, "coffee_board_id")));
     }
 
 
@@ -58,7 +58,7 @@ public class CoffeeService {
     private static final int BLOCK_PAGE_NUM_COUNT = 5;  //블럭에 존재하는 페이지 번호수
 
     public Paging getPageList(CoffeeSearchCondition condition, Integer pageNum) {
-        Page<CoffeePageDto> page = coffeeRepository.searchPage(condition, PageRequest.of(pageNum - 1, PAGE_POST_COUNT, Sort.by(Sort.Direction.ASC, "coffee_board_id")));
+        Page<CoffeePageDto> page = coffeeRepository.searchPage(condition, PageRequest.of(pageNum - 1, PAGE_POST_COUNT, Sort.by(Sort.Direction.DESC, "coffee_board_id")));
 
         Paging paging = new Paging();
 
