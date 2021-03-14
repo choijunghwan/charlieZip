@@ -62,6 +62,12 @@ public class CoffeeController {
                 .store_name(board.getStore_name())
                 .menu_name(board.getMenu_name())
                 .price(board.getPrice())
+                .sweet(board.getSweet())
+                .acidity(board.getAcidity())
+                .body(board.getBody())
+                .balance(board.getBalance())
+                .aftertaste(board.getAftertaste())
+                .aroma(board.getAroma())
                 .desc(board.getDesc())
                 .build();
 

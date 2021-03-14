@@ -58,4 +58,5 @@ public class CoffeeBoardDto {
         this.aroma = aroma;
         this.desc = desc;
     }
+
 }

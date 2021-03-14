@@ -35,7 +35,13 @@ public class CoffeeRepositoryCustomImpl implements CoffeeRepositoryCustom{
                         coffee_Board.id.as("coffee_board_id"),
                         coffee_Board.store_name,
                         coffee_Board.menu_name,
-                        coffee_Board.price))
+                        coffee_Board.price,
+                        coffee_Board.sweet,
+                        coffee_Board.acidity,
+                        coffee_Board.body,
+                        coffee_Board.balance,
+                        coffee_Board.aftertaste,
+                        coffee_Board.aroma))
                 .from(coffee_Board)
                 .where(
                         storeNameCt(condition.getStore_name()),

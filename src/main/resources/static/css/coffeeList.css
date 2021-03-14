@@ -87,7 +87,7 @@ body {}
 	.content .content_title h2 {font-size: 25px;}
 	.content .content_title a.btn {right: 20px; top: 41px; padding: 6px 27px;}
 	
-	.content .gallery .item {width: 31.5%; padding: 4px;}
+	.content .gallery .item {width: 48%; padding: 4px;}
 
 	.content .paging ul {left: 35%;}
 }
@@ -95,8 +95,6 @@ body {}
     .content .content_search {padding-left: 3px;}
     .content .content_search .input_text {font-size: 11px;}
     .content .content_search .btn {width: 32px; height: 24px;}
-
-	.content .gallery .item {width: 48%; padding: 4px;}
 
 	.content .paging ul {left: 31%;}
 }
