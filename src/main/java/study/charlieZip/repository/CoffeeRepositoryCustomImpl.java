@@ -28,6 +28,7 @@ public class CoffeeRepositoryCustomImpl implements CoffeeRepositoryCustom{
 
     private final JPAQueryFactory queryFactory;
 
+
     @Override
     public Page<CoffeePageDto> searchPage(CoffeeSearchCondition condition, Pageable pageable) {
         QueryResults<CoffeePageDto> results = queryFactory

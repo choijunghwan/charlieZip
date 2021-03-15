@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
+import study.charlieZip.dto.CoffeeBoardDto;
 import study.charlieZip.dto.CoffeePageDto;
 import study.charlieZip.dto.CoffeeSearchCondition;
 import study.charlieZip.entity.Coffee_Board;
@@ -47,7 +48,7 @@ class CoffeeRepositoryTest {
 //            em.persist(coffee_board);
 //        }
 
-        PageRequest pageRequest = PageRequest.of(0, 8);
+        PageRequest pageRequest = PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "id"));
         CoffeeSearchCondition condition = new CoffeeSearchCondition(null, null);
         //when
         Page<CoffeePageDto> page = coffeeRepository.searchPage(condition, pageRequest);
@@ -67,4 +68,5 @@ class CoffeeRepositoryTest {
         }
 
     }
+
 }

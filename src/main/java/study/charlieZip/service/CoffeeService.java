@@ -39,8 +39,9 @@ public class CoffeeService {
     /**
      * 게시글 목록 조회
      */
-    public List<Coffee_Board> findPosts() {
-        return coffeeRepository.findAll();
+    public Page<CoffeePageDto> findPosts() {
+        CoffeeSearchCondition condition = new CoffeeSearchCondition(null, null);
+        return coffeeRepository.searchPage(condition, PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "id")));
     }
 
     /**
