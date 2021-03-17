@@ -43,10 +43,11 @@ body {}
 .content .gallery .item .post {}
 .content .gallery .item .infor {margin-top: -4px; padding: 10px; background: #eee;}
 .content .gallery .item .infor h3 {color: #585858; font-size: 23px; font-weight: 600;}
+.content .gallery .item .infor ul {height: 42px;}
 .content .gallery .item .infor ul li {position: relative; float: left; font-size: 14px;font-weight: 300; margin-right: 18px;}
 .content .gallery .item .infor ul li.line {position: relative;}
 .content .gallery .item .infor ul li.line::after {position: absolute; content: ''; width: 1px; height: 13px; background: #999; top: 4px; right: -10px;}
-.content .gallery .item .infor .infor_btn {padding-top: 10px;}
+.content .gallery .item .infor .infor_btn {}
 .content .gallery .item .infor .infor_btn a {padding: 10px 0; border-radius:36px; display: block; text-align: center; width: 100px; border: 1px solid #585858; background-color: #585858;}
 .content .gallery .item .infor .infor_btn span {color: #fff;}
 

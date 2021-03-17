@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <div th:replace="fragments/header :: header"></div>
     <link rel="stylesheet" th:href="@{/css/coffeeList.css}">
@@ -15,7 +15,7 @@
                 <div class="content">
                     <div class="content_title">
                         <h2>게시판</h2>
-                        <a href="/coffee/new" class="btn">등록</a>
+                        <a href="/coffee/new" sec:authorize="isAuthenticated()" class="btn">등록</a>
                     </div>
                     <div class="content_search" >
                         <form th:action="@{/coffee/list}" th:object="${coffeeSearch}" method="GET">

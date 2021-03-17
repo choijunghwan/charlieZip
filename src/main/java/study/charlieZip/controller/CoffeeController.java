@@ -56,6 +56,7 @@ public class CoffeeController {
     @GetMapping("coffee/view/{boardId}")
     public String view(@PathVariable("boardId") Long boardId, Model model) {
         Coffee_Board board = coffeeService.findOne(boardId);
+        String writer = board.getCreatedBy();
 
         CoffeeBoardDto coffeeBoardDto = CoffeeBoardDto.builder()
                 .id(board.getId())
@@ -72,6 +73,7 @@ public class CoffeeController {
                 .build();
 
         model.addAttribute("coffeeBoardDto", coffeeBoardDto);
+        model.addAttribute("writer", writer);
         return "coffee/coffeeView";
     }
 
