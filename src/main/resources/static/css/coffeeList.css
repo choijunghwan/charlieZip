@@ -33,17 +33,30 @@ body {}
 .content .content_title a.btn {position: absolute; right: 47px; top: 73px; font-size: 14px; padding: 8px 40px; border: solid 1px #585858; border-radius: 30px;}
 .content .content_title a.btn:hover {background-color: #585858; color: #fff;}
 
+.content .content_search {padding: 10px 0 10px 10px;}
+.content .content_search .input_text {font-size: 14px; border: solid 1px #585858; border-radius: 5px; padding: 3px;}
+.content .content_search .btn {width: 50px; height: 30px;}
+.content .content_search .btn:hover {background-color: rgba(77,62,215); color: #fff;}
+
 .content .gallery {display: block; padding-bottom: 30px;}
 .content .gallery .item {float: left; width: 23%; padding: 8px;}
 .content .gallery .item .post {}
 .content .gallery .item .infor {margin-top: -4px; padding: 10px; background: #eee;}
 .content .gallery .item .infor h3 {color: #585858; font-size: 23px; font-weight: 600;}
+.content .gallery .item .infor ul {height: 42px;}
 .content .gallery .item .infor ul li {position: relative; float: left; font-size: 14px;font-weight: 300; margin-right: 18px;}
 .content .gallery .item .infor ul li.line {position: relative;}
 .content .gallery .item .infor ul li.line::after {position: absolute; content: ''; width: 1px; height: 13px; background: #999; top: 4px; right: -10px;}
-.content .gallery .item .infor .infor_btn {padding-top: 10px;}
+.content .gallery .item .infor .infor_btn {}
 .content .gallery .item .infor .infor_btn a {padding: 10px 0; border-radius:36px; display: block; text-align: center; width: 100px; border: 1px solid #585858; background-color: #585858;}
 .content .gallery .item .infor .infor_btn span {color: #fff;}
+
+
+.content .paging {position: relative; display: block; width: 100%; height: 50px;}
+.content .paging ul {position: absolute; top: 0; left: 40.5%;}
+.content .paging ul li {float: left; display: block; box-sizing: border-box; padding: 5px 8px; border: 1px solid #222; margin-left: -1px;}
+.content .paging .active {background-color: rgba(53,210,100); color: #fff;}
+.content .paging ul li a {display: block; width: 100%; height: 100%;}
 
 /*푸터 영역*/
 .footer {}
@@ -59,6 +72,8 @@ body {}
 }
 @media (max-width: 960px){
 	.content .gallery .item {width: 22%;}
+
+	.content .paging ul {left: 37%;}
 }
 @media (max-width: 760px){
 	.header .title_menu{padding: 0; padding-right: 16px; padding-bottom: 5px;}
@@ -73,15 +88,26 @@ body {}
 	.content .content_title h2 {font-size: 25px;}
 	.content .content_title a.btn {right: 20px; top: 41px; padding: 6px 27px;}
 	
-	.content .gallery .item {width: 31.5%; padding: 4px;}
+	.content .gallery .item {width: 48%; padding: 4px;}
+
+	.content .paging ul {left: 35%;}
 }
 @media (max-width: 600px){
-	.content .gallery .item {width: 48%; padding: 4px;}
+    .content .content_search {padding-left: 3px;}
+    .content .content_search .input_text {font-size: 11px;}
+    .content .content_search .btn {width: 32px; height: 24px;}
+
+	.content .paging ul {left: 31%;}
 }
 @media (max-width: 480px){
 	.nav ul li a {padding: 0 24px;}
 	
 	.content .content_title h2 {padding-left: 15px;}
 	.content .content_title a {right: 9px; top: 42px; padding: 5px 22px;}
+
+	.content .content_search {padding-left: 15px;}
+
 	.content .gallery .item {width: 94%; padding: 4px 16px;}
+
+	.content .paging ul {left: 27%;}
 }

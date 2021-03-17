@@ -65,9 +65,12 @@
 /* 업로드 게시물 영역 */
 .recent {padding: 100px 0;}
 .recent h2 {font-size: 30px; font-weight: 500; margin-bottom: 20px;}
-.recent .recent_chart {}
-.recent .recent_chart .swiper-slide {float: left; width: 23%; margin-right: 2%;}
-.recent .recent_chart .swiper-slide:last-child {margin-right: 0;}
+.recent .recent_chart {position: relative;}
+.recent .recent_chart .slick-prev {position: absolute; top: 42%; left: -22px; width: 30px; height: 30px; background: url(../img/arrow_left30.png) no-repeat; text-indent: -9999px;}
+.recent .recent_chart .slick-next {position: absolute; top: 42%; right: -22px; height: 30px; width: 30px; background: url(../img/arrow_right30.png) no-repeat; text-indent: -9999px;}
+.recent .recent_chart .slick-prev:hover {background: url(../img/arrow_left_hover30.png)}
+.recent .recent_chart .slick-next:hover {background: url(../img/arrow_right_hover30.png)}
+.recent .recent_chart .item {}
 .recent .recent_chart .post img {}
 .recent .recent_chart .infor {margin-top: -4px; padding: 10px; background: #f2f2f2;}
 .recent .recent_chart .infor h3 {color: #333; font-size: 25px; font-weight: 700;}
@@ -78,6 +81,8 @@
 .recent .recent_chart .infor .infor_btn {padding-top: 10px;}
 .recent .recent_chart .infor .infor_btn a {padding: 10px 0; border-radius:36px; display: block; text-align: center; width: 100px; border: 1px solid #585858; background-color: #585858;}
 .recent .recent_chart .infor .infor_btn span {color: #fff;}
+.recent .recent_chart .slick-slide {margin: 10px;}
+
 
 /*푸터 영역*/
 .footer {}
@@ -122,9 +127,7 @@
 }
 @media (max-width: 600px){
 
-	#mlogin a {display: block;}
-
-	.nav .nav_right ul {display: none;}
+	.ban_menu ul li a {font-size: 18px;}
 
 }
 @media (max-width: 480px){
@@ -136,7 +139,7 @@
 
 	.ban_menu ul {bottom: 40px;}
 	.ban_menu ul li {padding: 0 5px; width: 11.5%;}
-	.ban_menu ul li a {font-size: 15px;}
+	.ban_menu ul li a {font-size: 14px;}
 	.ban_menu ul li a.m1:hover {transform: translate(0px, -260px); padding: 120px 0;}
 	.ban_menu ul li a.m2:hover {transform: translate(0px, -260px); padding: 120px 0;}
 	.ban_menu ul li a.m3:hover {transform: translate(0px, -260px); padding: 120px 0;}

@@ -1,8 +1,11 @@
 package study.charlieZip.dto;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 import study.charlieZip.entity.Coffee_Board;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Getter
@@ -12,16 +15,32 @@ import java.time.LocalDateTime;
 public class CoffeeBoardDto {
 
     private Long id;
+
+    @NotBlank(message = "가게이름을 입력해주세요")
     private String store_name;
+
     private String menu_name;
     private int price;
 
+    @Range(min = 1, max = 60, message = "1~60 사이 숫자를입력해주세요.")
     private int sweet;
+
+    @Range(min = 1, max = 60, message = "1~60 사이 숫자를입력해주세요.")
     private int acidity;
+
+    @Range(min = 1, max = 60, message = "1~60 사이 숫자를입력해주세요.")
     private int body;
+
+    @Range(min = 1, max = 60, message = "1~60 사이 숫자를입력해주세요.")
     private int balance;
+
+    @Range(min = 1, max = 60, message = "1~60 사이 숫자를입력해주세요.")
     private int aftertaste;
+
+    @Range(min = 1, max = 60, message = "1~60 사이 숫자를입력해주세요.")
     private int aroma;
+
+    @NotBlank(message = "최소 1글자는 입력해주세요. 부탁드립니다!")
     private String desc;
 
 
@@ -39,4 +58,5 @@ public class CoffeeBoardDto {
         this.aroma = aroma;
         this.desc = desc;
     }
+
 }
