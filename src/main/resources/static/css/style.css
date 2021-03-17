@@ -127,9 +127,7 @@
 }
 @media (max-width: 600px){
 
-	#mlogin a {display: block;}
-
-	.nav .nav_right ul {display: none;}
+	.ban_menu ul li a {font-size: 18px;}
 
 }
 @media (max-width: 480px){
@@ -141,7 +139,7 @@
 
 	.ban_menu ul {bottom: 40px;}
 	.ban_menu ul li {padding: 0 5px; width: 11.5%;}
-	.ban_menu ul li a {font-size: 15px;}
+	.ban_menu ul li a {font-size: 14px;}
 	.ban_menu ul li a.m1:hover {transform: translate(0px, -260px); padding: 120px 0;}
 	.ban_menu ul li a.m2:hover {transform: translate(0px, -260px); padding: 120px 0;}
 	.ban_menu ul li a.m3:hover {transform: translate(0px, -260px); padding: 120px 0;}
