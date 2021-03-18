@@ -27,6 +27,8 @@ public class Coffee_Board extends BaseEntity{
     private int balance;
     private int aftertaste;
     private int aroma;
+
+    @Column(name = "content")
     private String desc;
 
     @OneToMany(mappedBy = "coffee_board")
