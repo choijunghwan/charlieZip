@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import study.charlieZip.entity.Coffee_Board;
 import study.charlieZip.repository.CoffeeRepository;
 
+
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -52,7 +53,4 @@ class CoffeeServiceTest {
      */
 
 
-    /**
-     *
-     */
 }
