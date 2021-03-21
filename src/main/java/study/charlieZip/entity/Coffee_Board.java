@@ -19,6 +19,7 @@ public class Coffee_Board extends BaseEntity{
     private String menu_name;
     private int price;
     private String store_name;
+
     private int count;
 
     private int sweet;
