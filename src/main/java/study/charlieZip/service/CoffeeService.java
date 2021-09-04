@@ -60,7 +60,6 @@ public class CoffeeService {
 
     public Paging getPageList(CoffeeSearchCondition condition, Integer pageNum) {
         Page<CoffeePageDto> page = coffeeRepository.searchPage(condition, PageRequest.of(pageNum - 1, PAGE_POST_COUNT, Sort.by(Sort.Direction.DESC, "coffee_board_id")));
-
         Paging paging = new Paging();
 
         // 총 게시글 갯수
