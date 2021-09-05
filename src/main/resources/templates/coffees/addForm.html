@@ -18,7 +18,7 @@
                     <div class="form_header">
                          <h1 th:text="${board?.id} ? '게시글 수정' : '게시글 등록'"></h1>
                     </div>
-                    <form th:action="@{/coffee/new}" th:object="${board}" method="post">
+                    <form th:action="@{/coffees/new}" th:object="${board}" method="post">
                         <input id="board_idx" type="hidden" th:value="${board?.id}"/>
 <!--                     <input id="board_create_date" type="hidden" th:value="${board?.createDate}">-->
                         <table class="table">
@@ -84,7 +84,7 @@
                             </tr>
                         </table>
                         <div class="form_footer">
-                            <a href="/coffee/list" class="btn">목록으로</a>
+                            <a href="/coffees" class="btn">목록으로</a>
                         </div>
                         <div class="button">
                             <button th:if="!${board?.id}" type="submit" id="insert" class="btn">저장</button>

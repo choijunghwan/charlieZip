@@ -33,7 +33,7 @@ public class CoffeeController {
     /**
      * 게시글 목록
      */
-    @GetMapping("/coffee/list")
+    @GetMapping("/coffees")
     public String list(Model model, @RequestParam(value = "page", defaultValue = "1") Integer pageNum, @ModelAttribute("coffeeSearch") CoffeeSearchCondition condition) {
 //        List<Coffee_Board> boardList = coffeeService.findPosts();
 //        model.addAttribute("boardList", boardList);
@@ -47,13 +47,13 @@ public class CoffeeController {
         model.addAttribute("pageList", pageList);
 
 
-        return "coffee/coffeeList";
+        return "coffees/coffees";
     }
 
     /**
      * 게시글 상세페이지
      */
-    @GetMapping("coffee/view/{boardId}")
+    @GetMapping("coffees/{boardId}")
     public String view(@PathVariable("boardId") Long boardId, Model model) {
         Coffee_Board board = coffeeService.findOne(boardId);
         String writer = board.getCreatedBy();
@@ -74,22 +74,22 @@ public class CoffeeController {
 
         model.addAttribute("coffeeBoardDto", coffeeBoardDto);
         model.addAttribute("writer", writer);
-        return "coffee/coffeeView";
+        return "coffees/coffee";
     }
 
     /**
      * 게시글 등록 폼
      */
-    @GetMapping("coffee/new")
+    @GetMapping("coffees/new")
     public String write(Model model) {
         model.addAttribute("board", new CoffeeBoardDto());
-        return "coffee/createCoffeeForm";
+        return "coffees/addForm";
     }
 
     /**
      * 게시글 등록
      */
-    @PostMapping("coffee/new")
+    @PostMapping("coffees/new")
     public String write(@Valid CoffeeBoardDto coffeeBoardDto, Errors errors, Model model) {
         if (errors.hasErrors()) {
             // 게시글 작성 실패시, 데이터 유지
@@ -101,7 +101,7 @@ public class CoffeeController {
                 model.addAttribute(key, validtorResult.get(key));
             }
 
-            return "coffee/createCoffeeForm";
+            return "coffees/addForm";
         }
 
         Coffee_Board coffee_board = Coffee_Board.builder()
@@ -118,13 +118,13 @@ public class CoffeeController {
                 .build();
 
         coffeeService.savePost(coffee_board);
-        return "redirect:/coffee/list";
+        return "redirect:/coffees";
     }
 
     /**
      * 게시물 수정 폼
      */
-    @GetMapping("coffee/{boardId}/edit")
+    @GetMapping("coffees/{boardId}/edit")
     public String update(@PathVariable("boardId") Long boardId, Model model) {
         Coffee_Board board = coffeeService.findOne(boardId);
 
@@ -143,14 +143,14 @@ public class CoffeeController {
                 .build();
 
         model.addAttribute("board", coffeeBoardDto);
-        return "coffee/createCoffeeForm";
+        return "coffees/editForm";
     }
 
     /**
      * 게시글 수정
      */
     @ResponseBody
-    @RequestMapping(value = "/coffee/{boardId}/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/coffees/{boardId}/edit", method = RequestMethod.POST)
     public String update(@PathVariable("boardId") Long boardId, @RequestBody CoffeeBoardDto board) {
         Coffee_Board findPost = coffeeService.findOne(boardId);
 
@@ -174,11 +174,11 @@ public class CoffeeController {
     /**
      * 게시글 삭제
      */
-    @PostMapping("/coffee/{boardId}")
+    @PostMapping("/coffees/{boardId}/delete")
     public String delete(@PathVariable("boardId") Long boardId) {
         coffeeService.deletePost(boardId);
 
-        return "redirect:/coffee/list";
+        return "redirect:/coffees";
     }
 
 }
