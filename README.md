@@ -30,7 +30,7 @@ develop 브랜치에서 기능을 개발 후 Pull Request를 통해 master로 me
 (패키지구조 리팩토링 준비중)
 
 # 기술적 issue 해결과정
-
+[#1. thymeleaf Refactoring](https://github.com/choijunghwan/Today-I-Learn/blob/main/Project/CharlieZip/thymeleaf_refactoring.md)
 
 # Use Case
 (구현한 기능을 Wiki로 정리)
