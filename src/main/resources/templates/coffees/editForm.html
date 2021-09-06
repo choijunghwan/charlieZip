@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"></div>
+    <link rel="stylesheet" th:href="@{/css/coffeeForm.css}">
+    <title>찰리집 : 커피 </title>
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+</head>
+<body>
+    <div th:replace="fragments/board_header :: board_header"></div>
+    <!-- //header -->
+
+    <section id="content_form">
+        <div class="container">
+            <div class="row">
+                <div class="content_form">
+                    <div class="form_header">
+                         <h1 th:text="${board?.id} ? '게시글 수정' : '게시글 등록'"></h1>
+                    </div>
+                    <form th:action="@{/templates/coffees/new}" th:object="${board}" method="post">
+                        <input id="board_idx" type="hidden" th:value="${board?.id}"/>
+<!--                     <input id="board_create_date" type="hidden" th:value="${board?.createDate}">-->
+                        <table class="table">
+                            <tr>
+                                <th>가게</th>
+                                <td colspan="5">
+                                    <input type="text" th:field="*{store_name}" id="board_store" class="form-control">
+                                    <span th:text="${valid_store_name}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>메뉴</th>
+                                <td colspan="5">
+                                    <input type="text" th:field="*{menu_name}" id="board_menu" class="form-control">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>가격</th>
+                                <td colspan="5">
+                                    <input type="number" th:field="*{price}" id="board_price" class="form-control">
+                                </td>
+                            </tr>
+                            <tr class="taste c1">
+                                <th>SWEET</th>
+                                <td>
+                                    <input type="number" th:field="*{sweet}" id="board_SWEET" class="form-control">
+                                    <span th:text="${valid_sweet}"></span>
+                                </td>
+                                <th>ACIDITY</th>
+                                <td>
+                                    <input type="number" th:field="*{acidity}" id="board_ACIDITY" class="form-control">
+                                    <span th:text="${valid_acidity}"></span>
+                                </td>
+                                <th>BODY</th>
+                                <td>
+                                    <input type="number" th:field="*{body}" id="board_BODY" class="form-control">
+                                    <span th:text="${valid_body}"></span>
+                                </td>
+                            </tr>
+                            <tr class="taste c2">
+                                <th>BALANCE</th>
+                                <td>
+                                    <input type="number" th:field="*{balance}" id="board_BALANCE" class="form-control">
+                                    <span th:text="${valid_balance}"></span>
+                                </td>
+                                <th>AFTERTASTE</th>
+                                <td>
+                                    <input type="number" th:field="*{aftertaste}" id="board_AFTERTASTE" class="form-control">
+                                    <span th:text="${valid_aftertaste}"></span>
+                                </td>
+                                <th>AROMA</th>
+                                <td>
+                                    <input type="number" th:field="*{aroma}" id="board_AROMA" class="form-control">
+                                    <span th:text="${valid_aroma}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>내용</th>
+                                <td colspan="5">
+                                    <span th:text="${valid_desc}"></span>
+                                    <textarea id="board_content" th:field="*{desc}" cols="30" rows="70"></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form_footer">
+                            <a th:href="@{/coffees}" class="btn">목록으로</a>
+                        </div>
+                        <div class="button">
+                            <button th:if="!${board?.id}" type="submit" id="insert" class="btn">저장</button>
+                            <button th:if="${board?.id}" type="button" id="update" class="btn">수정</button>
+                        </div>
+<!--                        ${객체?.속성} : 객체가 null(?)일 경우 빈 값 표출-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //section -->
+
+    <!-- 수정  -->
+    <script th:if="${board?.id}" type="text/javascript">
+        //수정버튼
+        $("#update").click(function() {
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var jsonData = JSON.stringify({
+                store_name : $("#board_store").val(),
+                menu_name : $("#board_menu").val(),
+                price : $("#board_price").val(),
+                sweet : $("#board_SWEET").val(),
+                acidity : $("#board_ACIDITY").val(),
+                body : $("#board_BODY").val(),
+                balance : $("#board_BALANCE").val(),
+                aftertaste : $("#board_AFTERTASTE").val(),
+                aroma : $("#board_AROMA").val(),
+                desc : $("#board_content").val()
+            });
+            $.ajax({
+                url : "http://localhost:8080/coffee/" + $("#board_idx").val() + "/edit",
+                type : "POST",
+                data : jsonData,
+                contentType : "application/json",
+                beforeSend : function(xhr){
+                    xhr.setRequestHeader(header,token);
+                },
+                success : function() {
+                    alert("수정 성공!");
+                    location.href = "/coffee/list";
+                },
+                error : function(error) {
+                    alert("수정 실패!");
+                    console.log(jsonData);
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

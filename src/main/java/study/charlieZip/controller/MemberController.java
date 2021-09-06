@@ -7,9 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 import study.charlieZip.dto.MemberForm;
-import study.charlieZip.entity.Gender;
 import study.charlieZip.entity.Member;
 import study.charlieZip.service.MemberService;
 
@@ -25,9 +23,9 @@ public class MemberController {
     /**
      * 로그인 페이지
      */
-    @GetMapping(value = "/members/login")
+    @GetMapping(value = "/login")
     public String login() {
-        return "members/memberLogin";
+        return "login/login";
     }
 
     /**
@@ -45,7 +43,7 @@ public class MemberController {
     @GetMapping(value = "/members/new")
     public String createForm(Model model) {
         model.addAttribute("memberForm", new MemberForm());
-        return "members/createMemberForm";
+        return "members/addForm";
     }
 
     /**
@@ -63,7 +61,7 @@ public class MemberController {
                 model.addAttribute(key, validatorResult.get(key));
             }
 
-            return "members/createMemberForm";
+            return "members/addForm";
         }
 
         // 비밀번호 암호화
@@ -79,4 +77,8 @@ public class MemberController {
         memberService.join(member);
         return "redirect:/";
     }
+
+    /**
+     * 회원 정보 수정
+     */
 }

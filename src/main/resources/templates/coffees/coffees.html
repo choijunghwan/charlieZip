@@ -15,10 +15,10 @@
                 <div class="content">
                     <div class="content_title">
                         <h2>게시판</h2>
-                        <a href="/coffee/new" sec:authorize="isAuthenticated()" class="btn">등록</a>
+                        <a href="/coffees/new" sec:authorize="isAuthenticated()" class="btn">등록</a>
                     </div>
                     <div class="content_search" >
-                        <form th:action="@{/coffee/list}" th:object="${coffeeSearch}" method="GET">
+                        <form th:action="@{/templates/coffees/list}" th:object="${coffeeSearch}" method="GET">
                             <input type="text" id="store_name" class="input_text" th:field="*{store_name}" placeholder="가게이름">
                             <input type="text" id="menu_name" class="input_text" th:field="*{menu_name}" placeholder="메뉴이름">
                             <button type="submit" class="btn">검색</button>
@@ -61,7 +61,7 @@
                                     <li th:text="${board.price}"></li>
                                 </ul>
                                 <div class="infor_btn">
-                                    <a th:href="@{'/coffee/view/' + ${board.id}}"><span>자세히보기</span></a>
+                                    <a th:href="@{'/coffees/' + ${board.id}}"><span>자세히보기</span></a>
                                 </div>
                             </div>
                         </div>
@@ -71,14 +71,14 @@
                             <ul th:with="startNumber=${pageList.blockStartNum},
                                         endNumber=${pageList.blockLastNum}">
                                 <li th:style="${startNumber} < 5 ? 'display:none'">
-                                    <a th:href="@{/coffee/list/(page=${startNumber} - 1) }">◀</a>
+                                    <a th:href="@{/templates/coffees/list/(page=${startNumber} - 1) }">◀</a>
                                 </li>
                                 <li th:each="pageNum : ${#numbers.sequence(startNumber,endNumber)}"
                                     th:class="(${pageNum} == ${pageList.nowPageNum}) ? 'active'">
-                                    <a th:href="@{'/coffee/list/?page=' + ${pageNum}}" th:text="${pageNum}"></a>
+                                    <a th:href="@{'/coffees/?page=' + ${pageNum}}" th:text="${pageNum}"></a>
                                 </li>
                                 <li th:style="${pageList.lastPageNum} <= ${endNumber} ? 'display:none'">
-                                    <a th:href="@{/coffee/list/(page=${endNumber} + 1) }">▶</a>
+                                    <a th:href="@{/templates/coffees/list/(page=${endNumber} + 1) }">▶</a>
                                 </li>
                             </ul>
                         </span>
