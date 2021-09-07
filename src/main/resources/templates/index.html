@@ -1,10 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-    <div th:replace="fragments/header :: header"></div>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/slick.css">
+<head th:replace="template/layout/head :: common_header(~{::title}, ~{::link})">
+
     <title>찰리집</title>
+
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{css/slick.css}">
+
 </head>
 <body>
     <header id="header">
@@ -114,7 +116,7 @@
     </section>
     <!-- //recent -->
 
-    <footer th:replace="fragments/footer :: footer"></footer>
+    <div th:replace="~{template/fragment/footer :: footer}"></div>
     <!-- //footer  -->
 
     <!-- 자바스크립트 라이브러리 -->

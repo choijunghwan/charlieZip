@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import study.charlieZip.dto.CoffeeBoardDto;
 import study.charlieZip.dto.CoffeePageDto;
 import study.charlieZip.dto.CoffeeSearchCondition;
@@ -149,9 +150,8 @@ public class CoffeeController {
     /**
      * 게시글 수정
      */
-    @ResponseBody
-    @RequestMapping(value = "/coffees/{boardId}/edit", method = RequestMethod.POST)
-    public String update(@PathVariable("boardId") Long boardId, @RequestBody CoffeeBoardDto board) {
+    @PostMapping(value = "/coffees/{boardId}/edit")
+    public String update(@PathVariable("boardId") Long boardId, @ModelAttribute CoffeeBoardDto board, RedirectAttributes redirectAttributes) {
         Coffee_Board findPost = coffeeService.findOne(boardId);
 
         findPost = Coffee_Board.builder()
@@ -168,7 +168,10 @@ public class CoffeeController {
                 .desc(board.getDesc())
                 .build();
         coffeeService.savePost(findPost);
-        return board.getStore_name();
+
+        redirectAttributes.addAttribute("boardId", boardId);
+
+        return "redirect:/coffees/{boardId}";
     }
 
     /**

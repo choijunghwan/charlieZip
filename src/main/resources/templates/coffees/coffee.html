@@ -1,12 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" >
-<head>
-    <div th:replace="fragments/header :: header"></div>
-    <link rel="stylesheet" th:href="@{/css/coffeeView.css}">
+<head th:replace="template/layout/head :: common_header(~{::title}, ~{::link})">
+
     <title>찰리집 : 커피 </title>
+
+    <link rel="stylesheet" th:href="@{/css/coffeeView.css}">
+
 </head>
 <body>
-    <div th:replace="fragments/board_header :: board_header"></div>
+    <div th:replace="template/fragment/board_header :: board_header"></div>
     <!-- //header -->
 
     <section id="content">
@@ -73,6 +75,7 @@
             </div>
         </div>
     </section>
+
 
 </body>
 </html>
