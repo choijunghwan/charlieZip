@@ -1,10 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-    <div th:replace="fragments/header :: header"></div>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/slick.css">
+<head th:replace="template/layout/head :: common_header(~{::title}, ~{::link})">
+
     <title>찰리집</title>
+
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{css/slick.css}">
+
 </head>
 <body>
     <header id="header">
@@ -19,7 +21,7 @@
                         </div>
                         <div class="nav_right">
                             <ul class="clearfix">
-                                <li><a class="line" sec:authorize="isAnonymous()" th:href="@{/members/login}">로그인</a></li>
+                                <li><a class="line" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a></li>
                                 <li><a sec:authorize="isAnonymous()" th:href="@{members/new}">회원가입</a></li>
                                 <li><a class="line" sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a></li>
                                 <li><a sec:authorize="hasRole('ROLE_MEMBER')" href="#">내정보</a></li>
@@ -48,7 +50,7 @@
                 <div class="row">
                     <div class="ban_menu">
                         <ul>
-                            <li><a href="/coffee/list" class="m1">커피</a></li>
+                            <li><a th:href="@{/coffees}" class="m1">커피</a></li>
                             <li><a href="#" class="m2">쇼핑</a></li>
                             <li><a href="#" class="m3">디저트</a></li>
                             <li><a href="#" class="m4">음료</a></li>
@@ -103,7 +105,7 @@
                                     <li th:text="${board.price}"></li>
                                 </ul>
                                 <div class="infor_btn">
-                                    <a href="#" th:href="@{'/coffee/view/' + ${board.id}}" id="link" th:value="${board?.id}"><span>자세히보기</span></a>
+                                    <a href="#" th:href="@{/coffees/{id}(id=${board.id})}" id="link" th:value="${board?.id}"><span>자세히보기</span></a>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +116,7 @@
     </section>
     <!-- //recent -->
 
-    <footer th:replace="fragments/footer :: footer"></footer>
+    <div th:replace="~{template/fragment/footer :: footer}"></div>
     <!-- //footer  -->
 
     <!-- 자바스크립트 라이브러리 -->

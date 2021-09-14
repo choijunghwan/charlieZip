@@ -5,13 +5,13 @@
         <div class="header">
             <div class="title_menu">
                 <div class="row">
-                    <h1><a href="/" class="logo"><img src="/img/logo.jpg" alt="찰리집"></a></h1>
+                    <h1><a th:href="@{/}" class="logo"><img src="/img/logo.jpg" alt="찰리집"></a></h1>
                 </div>
             </div>
             <nav class="nav">
                 <div class="row">
                     <ul>
-                        <li><a href="/coffee/list" class="active"><span>커피</span></a></li>
+                        <li><a th:href="@{/coffees}" class="active"><span>커피</span></a></li>
                         <li><a href="#"><span>쇼핑</span></a></li>
                         <li><a href="#"><span>디저트</span></a></li>
                         <li><a href="#"><span>음료</span></a></li>

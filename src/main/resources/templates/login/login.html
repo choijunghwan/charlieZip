@@ -1,12 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <div th:replace="fragments/header :: header"></div>
-    <link rel="stylesheet" th:href="@{/css/login_style.css}">
+<head th:replace="template/layout/head :: common_header(~{::title}, ~{::link})">
+
     <title>찰리집 : 로그인</title>
+
+    <link rel="stylesheet" th:href="@{/css/login_style.css}">
+
 </head>
 <body>
-    <div th:replace="fragments/member_header :: member_header"></div>
+    <div th:replace="~{template/fragment/member_header :: member_header}"></div>
     <!-- //header -->
 
     <section id="content">

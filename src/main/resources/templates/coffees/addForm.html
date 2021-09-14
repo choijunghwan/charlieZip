@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template/layout/head :: common_header(~{::title}, ~{::link})">
+
+    <title>찰리집 : 커피 </title>
+
+    <link rel="stylesheet" th:href="@{/css/coffeeForm.css}">
+
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+
+</head>
+<body>
+    <div th:replace="template/fragment/board_header :: board_header"></div>
+    <!-- //header -->
+
+    <section id="content_form">
+        <div class="container">
+            <div class="row">
+                <div class="content_form">
+                    <div class="form_header">
+                         <h1 th:text="'게시글 등록'"></h1>
+                    </div>
+                    <form th:action="@{/coffees/new}" th:object="${board}" method="post">
+<!--                     <input id="board_idx" type="hidden" th:value="${board?.id}"/>-->
+<!--                     <input id="board_create_date" type="hidden" th:value="${board?.createDate}">-->
+                        <table class="table">
+                            <tr>
+                                <th>가게</th>
+                                <td colspan="5">
+                                    <input type="text" th:field="*{store_name}" id="store_name" class="form-control">
+                                    <span th:errors="*{store_name}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>메뉴</th>
+                                <td colspan="5">
+                                    <input type="text" th:field="*{menu_name}" id="menu_name" class="form-control">
+                                    <span th:errors="*{menu_name}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>가격</th>
+                                <td colspan="5">
+                                    <input type="number" th:field="*{price}" id="price" class="form-control">
+                                    <span th:errors="*{price}"></span>
+                                </td>
+                            </tr>
+                            <tr class="taste c1">
+                                <th>SWEET</th>
+                                <td>
+                                    <input type="number" th:field="*{sweet}" id="sweet" class="form-control">
+                                    <span th:errors="*{sweet}"></span>
+                                </td>
+                                <th>ACIDITY</th>
+                                <td>
+                                    <input type="number" th:field="*{acidity}" id="acidity" class="form-control">
+                                    <span th:errors="*{acidity}"></span>
+                                </td>
+                                <th>BODY</th>
+                                <td>
+                                    <input type="number" th:field="*{body}" id="body" class="form-control">
+                                    <span th:errors="*{body}"></span>
+                                </td>
+                            </tr>
+                            <tr class="taste c2">
+                                <th>BALANCE</th>
+                                <td>
+                                    <input type="number" th:field="*{balance}" id="balance" class="form-control">
+                                    <span th:errors="*{balance}"></span>
+                                </td>
+                                <th>AFTERTASTE</th>
+                                <td>
+                                    <input type="number" th:field="*{aftertaste}" id="aftertaste" class="form-control">
+                                    <span th:errors="*{aftertaste}"></span>
+                                </td>
+                                <th>AROMA</th>
+                                <td>
+                                    <input type="number" th:field="*{aroma}" id="aroma" class="form-control">
+                                    <span th:errors="*{aroma}"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>내용</th>
+                                <td colspan="5">
+                                    <span th:errors="*{desc}"></span>
+                                    <textarea id="desc" th:field="*{desc}" cols="30" rows="70"></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form_footer">
+                            <a th:href="@{/coffees}" class="btn">목록으로</a>
+                        </div>
+                        <div class="button">
+                            <button type="submit" id="insert" class="btn">저장</button>
+                        </div>
+<!--                        ${객체?.속성} : 객체가 null(?)일 경우 빈 값 표출-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //section -->
+
+</body>
+</html>

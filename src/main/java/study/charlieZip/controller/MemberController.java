@@ -1,14 +1,19 @@
 package study.charlieZip.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import study.charlieZip.dto.MemberForm;
+import study.charlieZip.dto.MemberSaveForm;
+import study.charlieZip.dto.MemberUpdateForm;
 import study.charlieZip.entity.Gender;
 import study.charlieZip.entity.Member;
 import study.charlieZip.service.MemberService;
@@ -16,6 +21,7 @@ import study.charlieZip.service.MemberService;
 import javax.validation.Valid;
 import java.util.Map;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
@@ -25,9 +31,9 @@ public class MemberController {
     /**
      * 로그인 페이지
      */
-    @GetMapping(value = "/members/login")
+    @GetMapping(value = "/login")
     public String login() {
-        return "members/memberLogin";
+        return "login/login";
     }
 
     /**
@@ -43,40 +49,88 @@ public class MemberController {
      */
     // Get방식을 이용해 화면으로 데이터 MemberForm을 넘김
     @GetMapping(value = "/members/new")
-    public String createForm(Model model) {
-        model.addAttribute("memberForm", new MemberForm());
-        return "members/createMemberForm";
+    public String addForm(Model model) {
+        model.addAttribute("memberForm", new MemberSaveForm());
+        Gender[] genders = Gender.values();
+        model.addAttribute("genders", genders);
+        return "members/addForm";
     }
 
     /**
      * 회원가입
      */
     @PostMapping(value = "/members/new")
-    public String create(@Valid MemberForm memberform, Errors errors, Model model) {
-        if (errors.hasErrors()) {
+    public String addMember(@Validated @ModelAttribute("memberForm") MemberSaveForm memberForm, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            log.info("검증 오류 발생={}", bindingResult);
             //회원가입 실패시, 입력 데이터를 유지
-            model.addAttribute("memberForm", memberform);
+            Gender[] genders = Gender.values();
+            model.addAttribute("genders", genders);
 
-            // 유효성 통과 못한 필드와 메시지 핸들링
-            Map<String, String> validatorResult = memberService.validateHandling(errors);
-            for (String key : validatorResult.keySet()) {
-                model.addAttribute(key, validatorResult.get(key));
-            }
-
-            return "members/createMemberForm";
+            return "members/addForm";
         }
 
         // 비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         Member member = Member.builder()
-                .username(memberform.getUsername())
-                .password(passwordEncoder.encode(memberform.getPassword()))
-                .date(memberform.getDate())
-                .gender(memberform.getGender())
+                .username(memberForm.getUsername())
+                .password(passwordEncoder.encode(memberForm.getPassword()))
+                .date(memberForm.getDate())
+                .gender(memberForm.getGender())
                 .build();
 
         memberService.join(member);
         return "redirect:/";
+    }
+
+    /**
+     * 회원 정보 조회
+     */
+    @GetMapping("/members/{memberId}")
+    public String member(@PathVariable("memberId") Long memberId, Model model) {
+        Member member = memberService.findOne(memberId);
+        model.addAttribute("member", member);
+        return "members/member";
+    }
+
+    /**
+     * 회원 정보 수정 폼
+     */
+    @GetMapping("/members/{memberId}/edit")
+    public String editForm(@PathVariable("memberId") Long memberId, Model model) {
+        Member member = memberService.findOne(memberId);
+        model.addAttribute("memberForm", member);
+        return "members/editForm";
+    }
+
+    /**
+     * 회원 정보 수정
+     */
+    @PostMapping("/members/{memberId}/edit")
+    public String edit(@PathVariable("memberId") Long memberId, Model model,
+                       @ModelAttribute("memberForm") MemberUpdateForm memberForm, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            log.info("검증 오류 발생={}", bindingResult);
+            //회원가입 실패시, 입력 데이터를 유지
+            Gender[] genders = Gender.values();
+            model.addAttribute("genders", genders);
+
+            return "members/editForm";
+        }
+        // 비밀번호 암호화
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        Member member = Member.builder()
+                .username(memberForm.getUsername())
+                .password(passwordEncoder.encode(memberForm.getPassword()))
+                .date(memberForm.getDate())
+                .gender(memberForm.getGender())
+                .build();
+
+        memberService.join(member);
+        return "redirect:/members/{memberId}";
     }
 }
