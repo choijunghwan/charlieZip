@@ -63,6 +63,7 @@
                 <div class="form_footer">
                     <a th:href="@{/coffees}" class="btn">목록으로</a>
                 </div>
+
                 <div th:with="username= ${#authentication.principal} == anonymousUser ? null : ${#authentication.principal.username}">
                     <div class="button" th:if="${username == writer}">
                         <a th:href="@{/coffees/{id}/edit(id=${coffeeBoardDto.id})}" class="btn">수정</a>

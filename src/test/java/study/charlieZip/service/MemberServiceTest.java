@@ -4,11 +4,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import study.charlieZip.entity.Address;
 import study.charlieZip.entity.Gender;
 import study.charlieZip.entity.Member;
 import study.charlieZip.repository.MemberJpaRepository;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,7 +31,7 @@ class MemberServiceTest {
         //given
         Address address = new Address("하남", "미사강변", "12345");
         Member member = Member.builder()
-                .username("charlie")
+                .username("test")
                 .password("12345")
                 .date("19960105")
                 .gender(Gender.MAN)
@@ -47,6 +49,7 @@ class MemberServiceTest {
      * 중복_회원_예외
      */
     @Test
+    @Transactional(rollbackFor = {IllegalStateException.class})
     public void validDuplicate() {
 
         //given
