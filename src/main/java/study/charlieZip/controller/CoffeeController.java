@@ -3,23 +3,18 @@ package study.charlieZip.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import study.charlieZip.dto.CoffeeBoardDto;
-import study.charlieZip.dto.CoffeePageDto;
-import study.charlieZip.dto.CoffeeSearchCondition;
-import study.charlieZip.dto.Paging;
+import study.charlieZip.dto.*;
 import study.charlieZip.entity.Coffee_Board;
 import study.charlieZip.service.CoffeeService;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +54,7 @@ public class CoffeeController {
         Coffee_Board board = coffeeService.findOne(boardId);
         String writer = board.getCreatedBy();
 
-        CoffeeBoardDto coffeeBoardDto = CoffeeBoardDto.builder()
+        CoffeeBoardSaveForm coffeeBoardSaveForm = CoffeeBoardSaveForm.builder()
                 .id(board.getId())
                 .store_name(board.getStore_name())
                 .menu_name(board.getMenu_name())
@@ -73,7 +68,7 @@ public class CoffeeController {
                 .desc(board.getDesc())
                 .build();
 
-        model.addAttribute("coffeeBoardDto", coffeeBoardDto);
+        model.addAttribute("coffeeBoardDto", coffeeBoardSaveForm);
         model.addAttribute("writer", writer);
         return "coffees/coffee";
     }
@@ -83,7 +78,7 @@ public class CoffeeController {
      */
     @GetMapping("coffees/new")
     public String write(Model model) {
-        model.addAttribute("board", new CoffeeBoardDto());
+        model.addAttribute("board", new CoffeeBoardSaveForm());
         return "coffees/addForm";
     }
 
@@ -91,31 +86,25 @@ public class CoffeeController {
      * 게시글 등록
      */
     @PostMapping("coffees/new")
-    public String write(@Valid CoffeeBoardDto coffeeBoardDto, Errors errors, Model model) {
-        if (errors.hasErrors()) {
-            // 게시글 작성 실패시, 데이터 유지
-            model.addAttribute("board", coffeeBoardDto);
+    public String write(@Validated @ModelAttribute("board") CoffeeBoardSaveForm form, BindingResult bindingResult) {
 
-            // 유효성 통과 못한 필드와 메시지 핸들링
-            Map<String, String> validtorResult = coffeeService.validateHandling(errors);
-            for (String key : validtorResult.keySet()) {
-                model.addAttribute(key, validtorResult.get(key));
-            }
 
+        if (bindingResult.hasErrors()) {
+            log.info("게시글 등록 오류 발생={}",bindingResult);
             return "coffees/addForm";
         }
 
         Coffee_Board coffee_board = Coffee_Board.builder()
-                .store_name(coffeeBoardDto.getStore_name())
-                .menu_name(coffeeBoardDto.getMenu_name())
-                .price(coffeeBoardDto.getPrice())
-                .sweet(coffeeBoardDto.getSweet())
-                .acidity(coffeeBoardDto.getAcidity())
-                .body(coffeeBoardDto.getBody())
-                .balance(coffeeBoardDto.getBalance())
-                .aftertaste(coffeeBoardDto.getAftertaste())
-                .aroma(coffeeBoardDto.getAroma())
-                .desc(coffeeBoardDto.getDesc())
+                .store_name(form.getStore_name())
+                .menu_name(form.getMenu_name())
+                .price(form.getPrice())
+                .sweet(form.getSweet())
+                .acidity(form.getAcidity())
+                .body(form.getBody())
+                .balance(form.getBalance())
+                .aftertaste(form.getAftertaste())
+                .aroma(form.getAroma())
+                .desc(form.getDesc())
                 .build();
 
         coffeeService.savePost(coffee_board);
@@ -129,7 +118,7 @@ public class CoffeeController {
     public String update(@PathVariable("boardId") Long boardId, Model model) {
         Coffee_Board board = coffeeService.findOne(boardId);
 
-        CoffeeBoardDto coffeeBoardDto = CoffeeBoardDto.builder()
+        CoffeeBoardSaveForm coffeeBoardSaveForm = CoffeeBoardSaveForm.builder()
                 .id(board.getId())
                 .store_name(board.getStore_name())
                 .menu_name(board.getMenu_name())
@@ -143,7 +132,7 @@ public class CoffeeController {
                 .desc(board.getDesc())
                 .build();
 
-        model.addAttribute("board", coffeeBoardDto);
+        model.addAttribute("board", coffeeBoardSaveForm);
         return "coffees/editForm";
     }
 
@@ -151,7 +140,14 @@ public class CoffeeController {
      * 게시글 수정
      */
     @PostMapping(value = "/coffees/{boardId}/edit")
-    public String update(@PathVariable("boardId") Long boardId, @ModelAttribute CoffeeBoardDto board, RedirectAttributes redirectAttributes) {
+    public String update(@PathVariable("boardId") Long boardId,
+                         @Validated @ModelAttribute("board") CoffeeBoardUpdateForm board, BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            log.info("게시물 수정 에러={}", bindingResult);
+            return "coffees/editForm";
+        }
+
         Coffee_Board findPost = coffeeService.findOne(boardId);
 
         findPost = Coffee_Board.builder()

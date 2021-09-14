@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
-import study.charlieZip.dto.CoffeeBoardDto;
 import study.charlieZip.dto.CoffeePageDto;
 import study.charlieZip.dto.CoffeeSearchCondition;
 import study.charlieZip.dto.Paging;
@@ -16,7 +15,6 @@ import study.charlieZip.entity.Coffee_Board;
 import study.charlieZip.repository.CoffeeRepository;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -99,17 +97,4 @@ public class CoffeeService {
         coffeeRepository.deleteById(id);
     }
 
-    /**
-     * 게시글 등록, 유효성 검사
-     */
-    public Map<String, String> validateHandling(Errors errors) {
-        Map<String, String> validatorResult = new HashMap<>();
-
-        for (FieldError error : errors.getFieldErrors()) {
-            String validKeyName = String.format("valid_%s", error.getField());
-            validatorResult.put(validKeyName, error.getDefaultMessage());
-        }
-
-        return validatorResult;
-    }
 }

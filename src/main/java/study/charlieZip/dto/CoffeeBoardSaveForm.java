@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Range;
 import study.charlieZip.entity.Coffee_Board;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -12,14 +13,16 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @NoArgsConstructor
-public class CoffeeBoardDto {
+public class CoffeeBoardSaveForm {
 
     private Long id;
 
     @NotBlank(message = "가게이름을 입력해주세요")
     private String store_name;
 
+    @NotBlank
     private String menu_name;
+
     private int price;
 
     @Range(min = 1, max = 60, message = "1~60 사이 숫자를입력해주세요.")
@@ -45,7 +48,7 @@ public class CoffeeBoardDto {
 
 
     @Builder
-    public CoffeeBoardDto(Long id, String store_name, String menu_name, int price, int sweet, int acidity, int body, int balance, int aftertaste, int aroma, String desc) {
+    public CoffeeBoardSaveForm(Long id, String store_name, String menu_name, int price, int sweet, int acidity, int body, int balance, int aftertaste, int aroma, String desc) {
         this.id = id;
         this.store_name = store_name;
         this.menu_name = menu_name;

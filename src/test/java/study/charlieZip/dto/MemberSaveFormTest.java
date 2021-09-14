@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MemberFormTest {
+class MemberSaveFormTest {
 
     /**
      * 패턴 테스트

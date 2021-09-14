@@ -19,6 +19,9 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
 
+  messages:
+    basename: errors
+
 logging.level:
   org.hibernate.SQL: debug
 #  org.hibernate.type: trace
