@@ -1,18 +1,9 @@
 package study.charlieZip.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 import study.charlieZip.entity.Member;
-import study.charlieZip.entity.Role;
 import study.charlieZip.repository.MemberJpaRepository;
 
 import java.util.*;
@@ -20,7 +11,7 @@ import java.util.*;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class MemberService implements UserDetailsService {
+public class MemberService { //implements UserDetailsService {
 
     private final MemberJpaRepository memberJpaRepository;
 
@@ -43,12 +34,22 @@ public class MemberService implements UserDetailsService {
     }
 
     /**
+     * 회원 정보 수정
+     */
+    @Transactional
+    public Long update(Member member) {
+        memberJpaRepository.save(member);
+        return member.getId();
+    }
+
+
+    /**
      * Spring Security를 이용해 로그인할때 권한을 부여해주는것인데.
      * 이 프로젝트에서는 "vkdlxj3562"이라는 아이디만 ADMIN 권한을 가지게 하였다.
      * @return 사용자의 (아이디, 비밀번호, 권한)
      * @throws UsernameNotFoundException
      */
-    @Override
+    /*@Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<Member> userEntityWrapper = memberJpaRepository.findByUsername(username);
         Member userEntity = userEntityWrapper.get(0);
@@ -62,7 +63,7 @@ public class MemberService implements UserDetailsService {
         }
 
         return new User(userEntity.getUsername(), userEntity.getPassword(), authorities);
-    }
+    }*/
 
 
     /**
@@ -77,18 +78,6 @@ public class MemberService implements UserDetailsService {
      * 회원 찾기
      */
     public Member findOne(Long memberId) {
-        /*
-        Optional 에서 값 바로 받는 방법
-        Optional<Member> result = memberJpaRepository.findById(memberId);
-
-        if (!result.isPresent()) {
-            throw new IllegalArgumentException();
-        }
-
-        return result.get();
-         */
-
-        // 위의 코드를 orElseThrow 사용을 통해 한줄로 줄일 것
         return memberJpaRepository.findById(memberId).orElseThrow(IllegalArgumentException::new);
     }
 

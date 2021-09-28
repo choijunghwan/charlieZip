@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template/layout/head :: common_header(~{::title}, ~{::link})">
+
+    <title>찰리집 : 회원가입</title>
+
+    <link rel="stylesheet" th:href="@{/css/login_style.css}">
+
+</head>
+<body>
+    <div th:replace="~{template/fragment/member_header :: member_header}"></div>
+    <!-- //header -->
+
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div id="join-wrap">
+                    <h4 class="ir_su">회원 정보</h4>
+
+                    <div>
+                        <div class="join_row">
+                            <h3 class="join_title">
+                                <label for="username">아이디</label>
+                            </h3>
+                            <input th:value="${member.username}" type="text" id="username" name="username" class="input_text" readonly>
+                        </div>
+                        <div class="join_row">
+                            <h3 class="join_title">
+                                <label for="password">비밀번호</label>
+                            </h3>
+                            <input th:value="${member.password}" type="text" id="password" name="password" class="input_text" readonly>
+                        </div>
+                        <div class="join_row">
+                            <h3 class="join_title">
+                                <label for="date">생년월일</label>
+                            </h3>
+                            <input th:value="${member.date}" type="text" id="date" name="date" class="input_text" readonly>
+                        </div>
+                        <div class="join_row">
+                            <h3 class="join_title">
+                                <label for="gender">성별</label>
+                            </h3>
+                            <input th:value="${member.gender}" type="text" id="gender" name="gender" class="input_text" readonly>
+                        </div>
+
+                        <div>
+                            <button type="button" class="join_btn"
+                                    th:onclick="|location.href='@{/members/{id}/edit(id=${member.id})}'|">정보수정하러가기</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //section -->
+</body>
+</html>

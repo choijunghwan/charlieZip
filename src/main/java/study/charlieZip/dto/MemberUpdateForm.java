@@ -11,6 +11,9 @@ import javax.validation.constraints.Pattern;
 @Data
 public class MemberUpdateForm {
 
+    @NotNull
+    private Long id;
+
     //NotEmpty는 null과 ""을 허용하지 않는다.
     @NotBlank(message = "회원 이름은 필수 입니다.")
     private String username;

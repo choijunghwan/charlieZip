@@ -3,24 +3,17 @@ package study.charlieZip.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import study.charlieZip.service.MemberService;
 
-@Configuration
-@RequiredArgsConstructor
-@EnableWebSecurity
+//@Configuration
+//@RequiredArgsConstructor
+//@EnableWebSecurity
 /**
  * @EnableWebSecurity
  *  - @Configuration  클래스에 @EnableWebSecurity 어노테이션을 추가하여 Spring Security 설정할 클래스라고 정의한다.
  *  설정은 WebSecurityConfigurerAdapter 클래스를 상속받아 메서드를 구현하는것이 일반적인 방법이다.
  */
+/*
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // WebSecurityConfigurerAdater는 WebSecurityConfigurer 인스턴스를 편리하게 생성하기 위한 클래스이다.
 
@@ -62,3 +55,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
     }
 }
+*/

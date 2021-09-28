@@ -17,7 +17,7 @@
                 <div class="content">
                     <div class="content_title">
                         <h2>게시판</h2>
-                        <a th:href="@{/coffees/new}" sec:authorize="isAuthenticated()" class="btn">등록</a>
+                        <a th:href="@{/coffees/new}" class="btn">등록</a>
                     </div>
                     <div class="content_search" >
                         <form th:action="@{/coffees}" th:object="${coffeeSearch}" method="GET">

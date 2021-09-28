@@ -21,11 +21,8 @@
                         </div>
                         <div class="nav_right">
                             <ul class="clearfix">
-                                <li><a class="line" th:href="@{/login}">로그인</a></li>
-                                <li><a th:href="@{members/new}">회원가입</a></li>
-<!--                                <li><a class="line" th:href="@{/logout}">로그아웃</a></li>-->
-<!--                                <li><a href="#">내정보</a></li>-->
-<!--                                <li><a href="#">어드민</a></li>-->
+                                <li><a class="line" th:href="@{/logout}">로그아웃</a></li>
+                                <li><a th:href="@{/members/{id}(id=${session.loginMember})}">내정보</a></li>
                             </ul>
                         </div>
                         <div id="mlogin">

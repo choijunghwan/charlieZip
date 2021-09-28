@@ -2,7 +2,6 @@ package study.charlieZip.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import study.charlieZip.entity.Coffee_Board;
@@ -32,11 +31,10 @@ public class initDB {
 
         @Transactional
         public void init() {
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
             Member member1 = Member.builder()
                     .username("vkdlxj3562")
-                    .password(passwordEncoder.encode("1234"))
+                    .password("1234")
                     .date("19960105")
                     .gender(Gender.MAN)
                     .build();
