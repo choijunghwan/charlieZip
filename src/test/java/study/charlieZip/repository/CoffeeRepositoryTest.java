@@ -7,8 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
-import study.charlieZip.dto.CoffeePageDto;
-import study.charlieZip.dto.CoffeeSearchCondition;
+import study.charlieZip.domain.coffee.entity.Coffee_Board;
+import study.charlieZip.domain.coffee.repository.CoffeeRepository;
+import study.charlieZip.domain.coffee.dto.CoffeePageDto;
+import study.charlieZip.domain.coffee.dto.CoffeeSearchCondition;
 
 import javax.persistence.EntityManager;
 

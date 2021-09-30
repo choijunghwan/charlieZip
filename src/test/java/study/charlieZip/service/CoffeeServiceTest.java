@@ -1,15 +1,14 @@
 package study.charlieZip.service;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import study.charlieZip.entity.Coffee_Board;
-import study.charlieZip.repository.CoffeeRepository;
+import study.charlieZip.domain.coffee.entity.Coffee_Board;
+import study.charlieZip.domain.coffee.repository.CoffeeRepository;
+import study.charlieZip.domain.coffee.service.CoffeeService;
 
 
-import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest

@@ -1,15 +1,14 @@
 package study.charlieZip.service;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import study.charlieZip.entity.Address;
-import study.charlieZip.entity.Gender;
-import study.charlieZip.entity.Member;
-import study.charlieZip.repository.MemberJpaRepository;
+import study.charlieZip.domain.member.entity.Address;
+import study.charlieZip.domain.member.entity.Gender;
+import study.charlieZip.domain.member.entity.Member;
+import study.charlieZip.domain.member.repository.MemberJpaRepository;
+import study.charlieZip.domain.member.service.MemberService;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @Transactional
 class MemberServiceTest {
 
-    @Autowired MemberService memberService;
+    @Autowired
+    MemberService memberService;
     @Autowired
     MemberJpaRepository memberJpaRepository;
 
