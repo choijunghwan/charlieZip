@@ -26,20 +26,33 @@ develop 브랜치에서 기능을 개발 후 Pull Request를 통해 master로 me
 <br><br>
 
 # 패키지 구조
-* study.charlieZip
-  * config
-  * controller
-  * service
-  * repository
-  * entity
-
-(패키지구조 리팩토링 준비중)
+```
+ chalieZip
+    ├── domain
+    |   ├── member
+    |   |   ├── entity
+    |   |   ├── repository
+    |   |   ├── service
+    |   |   ├── controller
+    |   |   ├── exception
+    |   |   └── dto
+    |   ├── coffee
+    |   └── reply
+    ├── global
+    |   ├── common  
+    |   ├── config
+    |   ├── error
+    |   └── interceptor
+    └── CharlieZipApplicaton.java
+```
+[#4. Directory 구조 변경](https://github.com/choijunghwan/Today-I-Learn/blob/main/Project/CharlieZip/Directory.md)
 
 <br><br>
 
 # 기술적 issue 해결과정
 [#1. thymeleaf Refactoring](https://github.com/choijunghwan/Today-I-Learn/blob/main/Project/CharlieZip/thymeleaf_refactoring.md)  
-[#2. Bean validation Refactoring](https://github.com/choijunghwan/Today-I-Learn/blob/main/Project/CharlieZip/validation_refactoring.md)
+[#2. Bean validation Refactoring](https://github.com/choijunghwan/Today-I-Learn/blob/main/Project/CharlieZip/validation_refactoring.md)  
+[#3. 중복된 로그인 체크 인터셉트 구현](https://github.com/choijunghwan/Today-I-Learn/blob/main/Project/CharlieZip/Interceptor.md)
 
 <br><br>
 
