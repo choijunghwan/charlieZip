@@ -4,8 +4,11 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import study.charlieZip.domain.coffee.entity.Coffee_Board;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -45,7 +48,6 @@ public class Member {
         this.gender = gender;
         this.address = address;
     }
-
 
     public Member(String username, String password, String date, Gender gender) {
         this.username = username;

@@ -50,6 +50,7 @@ public class initDB {
                     .aftertaste(50)
                     .aroma(10)
                     .desc("식물성 크림과 동물성크림을 섞어 만든 달달한 아인슈페너 느낌")
+                    .member(member1)
                     .build();
 
             Coffee_Board coffee_board2 = Coffee_Board.builder()
@@ -63,6 +64,7 @@ public class initDB {
                     .aftertaste(50)
                     .aroma(45)
                     .desc("묵직한 바디감이 느껴지고 다크하지만 중간에 적절한 베리한 신맛이 느껴진다.")
+                    .member(member1)
                     .build();
 
             Coffee_Board coffee_board3 = Coffee_Board.builder()
@@ -76,6 +78,7 @@ public class initDB {
                     .aftertaste(40)
                     .aroma(40)
                     .desc("아직 안마셔봄 ㅋㅋ")
+                    .member(member1)
                     .build();
 
             Coffee_Board coffee_board4 = Coffee_Board.builder()
@@ -89,6 +92,7 @@ public class initDB {
                     .aftertaste(20)
                     .aroma(20)
                     .desc("에스프레소 농도가 연하다.")
+                    .member(member1)
                     .build();
 
             em.persist(member1);

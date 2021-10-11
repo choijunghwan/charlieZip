@@ -12,6 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import study.charlieZip.domain.coffee.dto.*;
 import study.charlieZip.domain.coffee.entity.Coffee_Board;
 import study.charlieZip.domain.coffee.service.CoffeeService;
+import study.charlieZip.domain.member.service.MemberService;
+import study.charlieZip.global.common.GlobalConst;
 
 import java.util.List;
 
@@ -21,7 +23,7 @@ import java.util.List;
 public class CoffeeController {
 
     private final CoffeeService coffeeService;
-
+    private final MemberService memberService;
 
     /**
      * 게시글 목록
@@ -83,8 +85,8 @@ public class CoffeeController {
      * 게시글 등록
      */
     @PostMapping("coffees/new")
-    public String write(@Validated @ModelAttribute("board") CoffeeBoardSaveForm form, BindingResult bindingResult) {
-
+    public String write(@Validated @ModelAttribute("board") CoffeeBoardSaveForm form, BindingResult bindingResult,
+                        @SessionAttribute(name = GlobalConst.LOGIN_MEMBER, required = false) Long loginMemberId) {
 
         if (bindingResult.hasErrors()) {
             log.info("게시글 등록 오류 발생={}",bindingResult);
@@ -102,6 +104,7 @@ public class CoffeeController {
                 .aftertaste(form.getAftertaste())
                 .aroma(form.getAroma())
                 .desc(form.getDesc())
+                .member(memberService.findOne(loginMemberId))
                 .build();
 
         coffeeService.savePost(coffee_board);
@@ -115,8 +118,9 @@ public class CoffeeController {
     public String update(@PathVariable("boardId") Long boardId, Model model) {
         Coffee_Board board = coffeeService.findOne(boardId);
 
-        CoffeeBoardSaveForm coffeeBoardSaveForm = CoffeeBoardSaveForm.builder()
+        CoffeeBoardUpdateForm coffeeBoardUpdateForm = CoffeeBoardUpdateForm.builder()
                 .id(board.getId())
+                .member_id(board.getMember().getId())
                 .store_name(board.getStore_name())
                 .menu_name(board.getMenu_name())
                 .price(board.getPrice())
@@ -129,7 +133,7 @@ public class CoffeeController {
                 .desc(board.getDesc())
                 .build();
 
-        model.addAttribute("board", coffeeBoardSaveForm);
+        model.addAttribute("board", coffeeBoardUpdateForm);
         return "coffees/editForm";
     }
 
@@ -145,9 +149,7 @@ public class CoffeeController {
             return "coffees/editForm";
         }
 
-        Coffee_Board findPost = coffeeService.findOne(boardId);
-
-        findPost = Coffee_Board.builder()
+        Coffee_Board findPost = Coffee_Board.builder()
                 .id(boardId)
                 .store_name(board.getStore_name())
                 .menu_name(board.getMenu_name())
@@ -159,7 +161,9 @@ public class CoffeeController {
                 .aftertaste(board.getAftertaste())
                 .aroma(board.getAroma())
                 .desc(board.getDesc())
+                .member(memberService.findOne(board.getMember_id()))
                 .build();
+
         coffeeService.savePost(findPost);
 
         redirectAttributes.addAttribute("boardId", boardId);

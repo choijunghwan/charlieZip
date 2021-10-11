@@ -1,23 +1,25 @@
 package study.charlieZip.global.config;
 
-import org.springframework.context.annotation.Configuration;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.AuditorAware;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import study.charlieZip.domain.member.entity.Member;
+import study.charlieZip.global.common.GlobalConst;
 
 import java.util.Optional;
 
-/*public class AuditorAwareImpl implements AuditorAware<String> {
+/*@Slf4j
+public class AuditorAwareImpl implements AuditorAware<String> {
 
-    *//**
-     * Securitycontext 에서 인증정보를 가져와 주입시킨다.
-     *//*
+
     @Override
     public Optional<String> getCurrentAuditor() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (null == authentication || !authentication.isAuthenticated()) {
-            return null;
-        }
+        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        Member findMember = (Member) servletRequestAttributes.getRequest().getSession().getAttribute(GlobalConst.LOGIN_MEMBER);
+        log.info("Audit findMember {}", findMember);
 
-        return Optional.of(authentication.getName());
+        return Optional.ofNullable(findMember.getUsername());
     }
 }*/

@@ -56,7 +56,7 @@ public class LoginController {
         //세션이 있으면 있는 세션 반환, 없으면 신규 세션 반환
         HttpSession session = request.getSession();
         //세션에 로그인 회원 primary key 정보 보관
-        session.setAttribute(GlobalConst.LOGIN_MEMBER, loginMember.getId());
+        session.setAttribute(GlobalConst.LOGIN_MEMBER, loginMember);
 
         return "redirect:" + redirectURL;
 

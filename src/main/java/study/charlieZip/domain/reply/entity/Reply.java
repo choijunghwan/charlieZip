@@ -13,12 +13,12 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Reply extends BaseEntity {
 
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reply_id")
     private Long id;
 
+    private String writer;
     private String comment;
-    private int postNum;
     private int heartNum;
 
     @ManyToOne(fetch = FetchType.LAZY)

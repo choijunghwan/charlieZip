@@ -22,7 +22,7 @@
                         <div class="nav_right">
                             <ul class="clearfix">
                                 <li><a class="line" th:href="@{/logout}">로그아웃</a></li>
-                                <li><a th:href="@{/members/{id}(id=${session.loginMember})}">내정보</a></li>
+                                <li><a th:href="@{/members/{id}(id=${session.loginMember.id})}">내정보</a></li>
                             </ul>
                         </div>
                         <div id="mlogin">

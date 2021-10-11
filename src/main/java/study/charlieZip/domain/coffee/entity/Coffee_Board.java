@@ -1,6 +1,7 @@
 package study.charlieZip.domain.coffee.entity;
 
 import lombok.*;
+import study.charlieZip.domain.member.entity.Member;
 import study.charlieZip.domain.model.BaseEntity;
 import study.charlieZip.domain.reply.entity.Reply;
 
@@ -33,11 +34,15 @@ public class Coffee_Board extends BaseEntity {
     @Column(name = "content")
     private String desc;
 
-    @OneToMany(mappedBy = "coffee_board")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @OneToMany(mappedBy = "coffee_board", cascade = CascadeType.ALL)
     private List<Reply> replys = new ArrayList<>();
 
     @Builder
-    public Coffee_Board(Long id, String menu_name, int price, String store_name, int count, int sweet, int acidity, int body, int balance, int aftertaste, int aroma, String desc) {
+    public Coffee_Board(Long id, String menu_name, int price, String store_name, int count, int sweet, int acidity, int body, int balance, int aftertaste, int aroma, String desc, Member member, List<Reply> replys) {
         this.id = id;
         this.menu_name = menu_name;
         this.price = price;
@@ -50,5 +55,11 @@ public class Coffee_Board extends BaseEntity {
         this.aftertaste = aftertaste;
         this.aroma = aroma;
         this.desc = desc;
+        this.member = member;
+        this.replys = replys;
+    }
+
+    public void changeStoreName(String store_name) {
+        this.store_name = store_name;
     }
 }

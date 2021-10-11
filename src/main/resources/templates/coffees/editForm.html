@@ -20,6 +20,7 @@
                     </div>
                     <form th:action="@{/coffees/{id}/edit(id=${board.id})}" th:object="${board}" method="post">
                         <input id="id" type="hidden" th:field="*{id}"/>
+                        <input id="member_id" type="hidden" th:field="*{member_id}"/>
 <!--                     <input id="board_create_date" type="hidden" th:value="${board?.createDate}">-->
                         <table class="table">
                             <tr>

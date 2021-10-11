@@ -15,6 +15,9 @@ public class CoffeeBoardUpdateForm {
     @NotNull
     private Long id;
 
+    @NotNull
+    private Long member_id;
+
     @NotBlank(message = "가게이름을 입력해주세요")
     private String store_name;
 
@@ -46,8 +49,9 @@ public class CoffeeBoardUpdateForm {
 
 
     @Builder
-    public CoffeeBoardUpdateForm(Long id, String store_name, String menu_name, int price, int sweet, int acidity, int body, int balance, int aftertaste, int aroma, String desc) {
+    public CoffeeBoardUpdateForm(Long id, Long member_id, String store_name, String menu_name, int price, int sweet, int acidity, int body, int balance, int aftertaste, int aroma, String desc) {
         this.id = id;
+        this.member_id = member_id;
         this.store_name = store_name;
         this.menu_name = menu_name;
         this.price = price;

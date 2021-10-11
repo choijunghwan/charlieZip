@@ -7,6 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import study.charlieZip.domain.coffee.entity.Coffee_Board;
 import study.charlieZip.domain.coffee.repository.CoffeeRepository;
 import study.charlieZip.domain.coffee.service.CoffeeService;
+import study.charlieZip.domain.member.entity.Gender;
+import study.charlieZip.domain.member.entity.Member;
+import study.charlieZip.domain.member.service.MemberService;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,14 +21,15 @@ class CoffeeServiceTest {
     @Autowired
     CoffeeService coffeeService;
     @Autowired
-    CoffeeRepository coffeeRepository;
+    MemberService memberService;
+
+
     /**
      * 게시글 등록
      */
     @Test
     public void savePost() {
 
-        //given
         Coffee_Board coffee_board = Coffee_Board.builder()
                 .store_name("벙커컴퍼니")
                 .menu_name("아메리카노")
@@ -44,7 +48,9 @@ class CoffeeServiceTest {
         Long saveId = coffeeService.savePost(coffee_board);
 
         //then
-        assertEquals(coffee_board, coffeeRepository.findById(saveId).get());
+        System.out.println("coffeeService = " + coffeeService.findOne(saveId));
+
+
     }
 
     /**
