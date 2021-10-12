@@ -121,15 +121,7 @@ public class MemberController {
             return "members/editForm";
         }
 
-        Member member = memberService.findOne(memberId);
-        member = Member.builder()
-                .username(memberForm.getUsername())
-                .password(memberForm.getPassword())
-                .date(memberForm.getDate())
-                .gender(memberForm.getGender())
-                .build();
-
-        memberService.update(member);
+        memberService.update(memberId, memberForm);
         return "redirect:/members/{memberId}";
     }
 }

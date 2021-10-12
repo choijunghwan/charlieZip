@@ -41,7 +41,8 @@ public class Member {
     private Address address;
 
     @Builder
-    public Member(String username, String password, String date, Gender gender, Address address) {
+    public Member(Long id, String username, String password, String date, Gender gender, Address address) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.date = date;
@@ -49,7 +50,8 @@ public class Member {
         this.address = address;
     }
 
-    public Member(String username, String password, String date, Gender gender) {
+
+    public void changeMember(String username, String password, String date, Gender gender) {
         this.username = username;
         this.password = password;
         this.date = date;

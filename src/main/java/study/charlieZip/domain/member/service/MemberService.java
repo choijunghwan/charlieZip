@@ -3,8 +3,10 @@ package study.charlieZip.domain.member.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import study.charlieZip.domain.member.dto.MemberUpdateForm;
 import study.charlieZip.domain.member.entity.Member;
 import study.charlieZip.domain.member.repository.MemberJpaRepository;
+import study.charlieZip.domain.member.repository.MemberRepository;
 
 import java.util.*;
 
@@ -14,6 +16,7 @@ import java.util.*;
 public class MemberService { //implements UserDetailsService {
 
     private final MemberJpaRepository memberJpaRepository;
+    private final MemberRepository memberRepository;
 
     /**
      * 회원가입
@@ -37,9 +40,17 @@ public class MemberService { //implements UserDetailsService {
      * 회원 정보 수정
      */
     @Transactional
-    public Long update(Member member) {
-        memberJpaRepository.save(member);
-        return member.getId();
+    public Long update(Long memberId, MemberUpdateForm memberForm) {
+        Optional<Member> memberOptional = memberRepository.findById(memberId);
+        Member findMember = memberOptional.orElse(null);
+        if (findMember == null) {
+            throw new IllegalStateException("존재하지 않는 회원입니다.");
+        }
+
+        //더피 체킹 이용
+        findMember.changeMember(memberForm.getUsername(), memberForm.getPassword(), memberForm.getDate(), memberForm.getGender());
+
+        return findMember.getId();
     }
 
 
