@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import study.charlieZip.domain.coffee.dto.*;
 import study.charlieZip.domain.coffee.entity.Coffee_Board;
 import study.charlieZip.domain.coffee.service.CoffeeService;
+import study.charlieZip.domain.member.entity.Member;
 import study.charlieZip.domain.member.service.MemberService;
 import study.charlieZip.global.common.GlobalConst;
 
@@ -46,9 +47,16 @@ public class CoffeeController {
      * 게시글 상세페이지
      */
     @GetMapping("coffees/{boardId}")
-    public String view(@PathVariable("boardId") Long boardId, Model model) {
+    public String view(@PathVariable("boardId") Long boardId, Model model,
+                       @SessionAttribute(name = GlobalConst.LOGIN_MEMBER, required = false) Member loginMember) {
         Coffee_Board board = coffeeService.findOne(boardId);
-        String writer = board.getCreatedBy();
+
+        // 게시글 작성자랑 로그인한 사용자랑 일치여부 확인
+        if (board.getMember().getId() == loginMember.getId()) {
+            model.addAttribute("boardWrite", true);
+        } else {
+            model.addAttribute("boardWrite", false);
+        }
 
         CoffeeBoardSaveForm coffeeBoardSaveForm = CoffeeBoardSaveForm.builder()
                 .id(board.getId())
@@ -65,7 +73,6 @@ public class CoffeeController {
                 .build();
 
         model.addAttribute("coffeeBoardDto", coffeeBoardSaveForm);
-        model.addAttribute("writer", writer);
         return "coffees/coffee";
     }
 

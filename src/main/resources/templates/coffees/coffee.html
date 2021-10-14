@@ -64,7 +64,8 @@
                     <a th:href="@{/coffees}" class="btn">목록으로</a>
                 </div>
 
-                <div class="button">
+                <div th:style="${boardWrite == false} ? 'display:none'"
+                        class="button">
                     <a th:href="@{/coffees/{id}/edit(id=${coffeeBoardDto.id})}" class="btn">수정</a>
                     <form th:action="@{/coffees/{id}/delete(id=${coffeeBoardDto.id})}" method="post">
                         <input type="hidden" name="_method" value="delete">
