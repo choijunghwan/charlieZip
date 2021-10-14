@@ -1,6 +1,7 @@
 package study.charlieZip.domain.reply.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import study.charlieZip.domain.coffee.entity.Coffee_Board;
@@ -24,6 +25,15 @@ public class Reply extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "coffee_board_id")
     private Coffee_Board coffee_board;
+
+    @Builder
+    public Reply(Long id, String writer, String comment, int heartNum, Coffee_Board coffee_board) {
+        this.id = id;
+        this.writer = writer;
+        this.comment = comment;
+        this.heartNum = heartNum;
+        this.coffee_board = coffee_board;
+    }
 
     /**
      * Coffee_Board 랑 Reply가 일대다 관계이다.

@@ -1,4 +1,4 @@
-package study.charlieZip.dto;
+package study.charlieZip.domain.member.dto;
 
 import org.junit.jupiter.api.Test;
 

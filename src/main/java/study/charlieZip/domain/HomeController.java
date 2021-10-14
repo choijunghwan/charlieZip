@@ -6,9 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import study.charlieZip.domain.coffee.dto.coffeeBoardDto;
 import study.charlieZip.domain.member.entity.Member;
 import study.charlieZip.global.common.GlobalConst;
-import study.charlieZip.domain.coffee.dto.CoffeePageDto;
 import study.charlieZip.domain.coffee.service.CoffeeService;
 
 import java.util.List;
@@ -24,8 +24,8 @@ public class HomeController {
             @SessionAttribute(name = GlobalConst.LOGIN_MEMBER, required = false) Member loginMember,
             Model model) {
 
-        Page<CoffeePageDto> posts = coffeeService.findPosts();
-        List<CoffeePageDto> boardList = posts.getContent();
+        Page<coffeeBoardDto> posts = coffeeService.findPosts();
+        List<coffeeBoardDto> boardList = posts.getContent();
         model.addAttribute("boardList", boardList);
 
 

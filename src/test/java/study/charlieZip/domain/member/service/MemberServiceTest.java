@@ -1,4 +1,4 @@
-package study.charlieZip.service;
+package study.charlieZip.domain.member.service;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

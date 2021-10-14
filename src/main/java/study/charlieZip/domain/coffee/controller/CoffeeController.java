@@ -29,16 +29,13 @@ public class CoffeeController {
      * 게시글 목록
      */
     @GetMapping("/coffees")
-    public String list(Model model, @RequestParam(value = "page", defaultValue = "1") Integer pageNum, @ModelAttribute("coffeeSearch") CoffeeSearchCondition condition) {
-//        List<Coffee_Board> boardList = coffeeService.findPosts();
-//        model.addAttribute("boardList", boardList);
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "1") Integer pageNum,
+                       @ModelAttribute("coffeeSearch") CoffeeSearchCondition condition) {
 
-        Page<CoffeePageDto> postPaging = coffeeService.getPostPaging(condition, pageNum);
-        // 페이징한 게시글 목록들을 찾고
-        List<CoffeePageDto> boardList = postPaging.getContent();
-        model.addAttribute("boardList", boardList);
+
 
         Paging pageList = coffeeService.getPageList(condition, pageNum);
+//        model.addAttribute("boardList", boardList);
         model.addAttribute("pageList", pageList);
 
 

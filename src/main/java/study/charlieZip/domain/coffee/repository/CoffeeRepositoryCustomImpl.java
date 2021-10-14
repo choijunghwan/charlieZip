@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import study.charlieZip.domain.coffee.dto.CoffeePageDto;
+import study.charlieZip.domain.coffee.dto.coffeeBoardDto;
 import study.charlieZip.domain.coffee.dto.CoffeeSearchCondition;
 import study.charlieZip.dto.QCoffeePageDto;
 
@@ -23,8 +23,8 @@ public class CoffeeRepositoryCustomImpl implements CoffeeRepositoryCustom {
 
 
     @Override
-    public Page<CoffeePageDto> searchPage(CoffeeSearchCondition condition, Pageable pageable) {
-        QueryResults<CoffeePageDto> results = queryFactory
+    public Page<coffeeBoardDto> searchPage(CoffeeSearchCondition condition, Pageable pageable) {
+        QueryResults<coffeeBoardDto> results = queryFactory
                 .select(new QCoffeePageDto(
                         coffee_Board.id.as("coffee_board_id"),
                         coffee_Board.store_name,
@@ -46,7 +46,7 @@ public class CoffeeRepositoryCustomImpl implements CoffeeRepositoryCustom {
                 .limit(pageable.getPageSize())
                 .fetchResults();
 
-        List<CoffeePageDto> content = results.getResults();
+        List<coffeeBoardDto> content = results.getResults();
         long total = results.getTotal();
 
         return new PageImpl<>(content, pageable, total);

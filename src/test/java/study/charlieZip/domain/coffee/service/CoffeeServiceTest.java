@@ -1,7 +1,8 @@
-package study.charlieZip.service;
+package study.charlieZip.domain.coffee.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import study.charlieZip.domain.coffee.entity.Coffee_Board;
@@ -53,9 +54,6 @@ class CoffeeServiceTest {
 
     }
 
-    /**
-     * sweet, acidity, ...   0~60 범위 벗어나는거 에러나는지 테스트
-     */
 
 
 }
