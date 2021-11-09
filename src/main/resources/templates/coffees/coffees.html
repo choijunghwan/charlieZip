@@ -17,7 +17,7 @@
                 <div class="content">
                     <div class="content_title">
                         <h2>게시판</h2>
-                        <a th:href="@{/coffees/new}" sec:authorize="isAuthenticated()" class="btn">등록</a>
+                        <a th:href="@{/coffees/new}" class="btn">등록</a>
                     </div>
                     <div class="content_search" >
                         <form th:action="@{/coffees}" th:object="${coffeeSearch}" method="GET">
@@ -27,7 +27,7 @@
                         </form>
                     </div>
                     <div class="gallery clearfix">
-                        <div class="item" th:each="board : ${boardList}">
+                        <div class="item" th:each="board : ${pageList.getCoffeeBoardDtoList()}">
                             <div class="post">
 <!--                                <img src="/img/coffeetaste.jpg" alt="커피맛">-->
                                 <svg height="100%" width="100%" viewBox="0 0 400 400"
@@ -75,7 +75,8 @@
                                 <li th:style="${startNumber} < 5 ? 'display:none'">
                                     <a th:href="@{/coffees(page=${startNumber} - 1)}">◀</a>
                                 </li>
-                                <li th:each="pageNum : ${#numbers.sequence(startNumber,endNumber)}"
+                                <li th:style="${endNumber} == 0 ? 'display:none'"
+                                    th:each="pageNum : ${#numbers.sequence(startNumber,endNumber)}"
                                     th:class="(${pageNum} == ${pageList.nowPageNum}) ? 'active'">
                                     <a th:href="@{/coffees(page=${pageNum})}" th:text="${pageNum}"></a>
                                 </li>
