@@ -64,8 +64,7 @@
                     <a th:href="@{/coffees}" class="btn">목록으로</a>
                 </div>
 
-                <div th:style="${boardWrite == false} ? 'display:none'"
-                        class="button">
+                <div th:style="${boardWrite == false} ? 'display:none'" class="button">
                     <a th:href="@{/coffees/{id}/edit(id=${coffeeBoardDto.id})}" class="btn">수정</a>
                     <form th:action="@{/coffees/{id}/delete(id=${coffeeBoardDto.id})}" method="post">
                         <input type="hidden" name="_method" value="delete">
@@ -76,6 +75,113 @@
         </div>
     </section>
 
+    <section id="comment">
+        <div class="container">
+            <div class="row">
+                <div class="comment">
+                    <label for="content">의견쓰기</label>
+                    <form name="commentInsertForm">
+                        <div class="input-group">
+                            <input type="hidden" id="bno" name="bno" th:value="${coffeeBoardDto.id}"/>
+                            <p><textarea class="comment_content" name="comment_content" cols="50" rows="10"></textarea></p>
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="comment_list">
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script th:inline="javascript">
+        var bno = $("#bno").val();  //게시글 번호
+
+        $('[name=commentInsertBtn]').click(function (){ //댓글 등록 버튼 클릭
+            var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
+            commentInsert(insertData);  //Insert 함수 호출
+        });
+
+        //댓글 목록
+        function commentList(){
+            $.ajax({
+                url : '/comments',
+                type : 'get',
+                data : {'bno':bno},
+                success : function (data){
+                    var a = '';
+                    $.each(data, function(key, value){
+                        a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+                        a += '<div class="commentInfo'+value.cno+'">'+'댓글번호 : '+value.cno+' / 작성자 : '+value.writer;
+                        a += '<a onclick="commentUpdate('+value.cno+',\''+value.comment+'\');"> 수정 </a>';
+                        a += '<a onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>';
+                        a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '+value.comment +'</p>';
+                        a += '</div></div>';
+                    });
+
+                    $(".comment_list").html(a);
+                }
+            });
+        }
+
+        //댓글 등록
+        function commentInsert(insertData){
+            $.ajax({
+                url : '/comments/new',
+                type : 'post',
+                data : insertData,
+                success : function (data){
+                    if (data == 1){
+                        commentList(); //댓글 작성 후 댓글 목록 reload
+                        $('[name=content]').val('');
+                    }
+                }
+            });
+        }
+
+        //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경
+        function commentUpdate(cno, content){
+            var a = '';
+
+            a += '<div class="input-group">';
+            a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
+            a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
+            a += '</div>';
+
+            $('.commentContent'+cno).html(a);
+        }
+
+        //댓글 수정
+        function commentUpdateProc(cno){
+            var updateContent = $('[name=content_'+cno+']').val();
+
+            $.ajax({
+                url : '/comments/' + cno + '/edit',
+                type : 'put',
+                data : {'content':updateContent},
+                success : function (data){
+                    if (data == 1) commentList(bno); //댓글 수정후 목록 출력
+                }
+            });
+        }
+
+        //댓글 삭제
+        function commentDelete(cno){
+            $.ajax({
+                url : '/comments/' + cno + '/delete',
+                type : 'delete',
+                success : function (data) {
+                    commentList(bno); //댓글 삭제후 목록 출력
+                }
+            });
+        }
+
+        $(document).ready(function (){
+            commentList(); //페이지 로딩시 댓글 목록 출력
+        });
+    </script>
 </body>
 </html>

@@ -105,7 +105,7 @@ public class MemberController {
     }
 
     /**
-     * 회원 정보 수정(미완성)
+     * 회원 정보 수정
      */
     @PostMapping("/members/{memberId}/edit")
     public String edit(@PathVariable("memberId") Long memberId, Model model,

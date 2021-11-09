@@ -47,4 +47,8 @@ public class Reply extends BaseEntity {
         this.coffee_board = coffee_board;
         coffee_board.getReplys().add(this);
     }
+
+    public void changeReply(String comment) {
+        this.comment = comment;
+    }
 }

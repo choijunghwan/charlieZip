@@ -1,36 +1,22 @@
 package study.charlieZip.domain.reply.service;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import study.charlieZip.domain.coffee.entity.Coffee_Board;
+import study.charlieZip.domain.reply.dto.ReplyResponse;
 import study.charlieZip.domain.reply.entity.Reply;
 
-@Slf4j
-@Transactional(readOnly = true)
-@Service
-public class ReplyService implements ReplyServiceImpl{
+import java.util.List;
 
-    /**
-     * 댓글 작성
-     */
-    @Override
-    public Long saveReply(Reply reply) {
-        return null;
-    }
+public interface ReplyService {
 
-    /**
-     * 댓글 조회
-     */
-    @Override
-    public Reply findOne(Long reply_id) {
-        return null;
-    }
+    //댓글 작성
+    public Long saveReply(Long boardId, String content, String writer);
 
-    /**
-     * 댓글 삭제
-     */
-    @Override
-    public void deleteReply(Long reply_id) {
+    public List<ReplyResponse> replyList(Long boardId);
 
-    }
+    //댓글 삭제
+    public void deleteReply(Long id);
+
+    //댓글 수정
+    public Long update(Long id, String content);
+
 }

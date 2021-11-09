@@ -14,6 +14,8 @@ import study.charlieZip.domain.reply.entity.Reply;
 import javax.persistence.EntityManager;
 
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 @Transactional
@@ -65,4 +67,53 @@ class ReplyRepositoryTest {
 
     }
 
+    @Test
+    @DisplayName("댓글 리스트 출력")
+    void replyList() {
+
+        //given
+        Coffee_Board coffee_board = Coffee_Board.builder()
+                .store_name("벙커컴퍼니")
+                .menu_name("아메리카노")
+                .price(5500)
+                .sweet(30)
+                .acidity(20)
+                .aftertaste(40)
+                .aroma(10)
+                .balance(60)
+                .body(20)
+                .count(1)
+                .desc("맛있다.")
+                .build();
+
+        coffeeRepository.save(coffee_board);
+
+        Reply reply1 = Reply.builder()
+                .writer("vkdlxj3562")
+                .comment("졸잼")
+                .coffee_board(coffee_board)
+                .build();
+
+        Reply reply2 = Reply.builder()
+                .writer("vkdlxj3562")
+                .comment("노잼")
+                .coffee_board(coffee_board)
+                .build();
+
+        replyRepository.save(reply1);
+        replyRepository.save(reply2);
+
+        em.flush();
+        em.clear();
+
+        //when
+        List<Reply> findReplys = replyRepository.findByCoffee_board(coffee_board);
+
+        //then
+        assertThat(findReplys.size()).isEqualTo(2);
+        for (Reply findReply : findReplys) {
+            System.out.println("findReply = " + findReply);
+        }
+
+    }
 }
