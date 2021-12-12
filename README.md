@@ -52,7 +52,8 @@ develop 브랜치에서 기능을 개발 후 Pull Request를 통해 master로 me
 # 기술적 issue 해결과정
 [#1. thymeleaf Refactoring](https://github.com/choijunghwan/Today-I-Learn/blob/main/Project/CharlieZip/thymeleaf_refactoring.md)  
 [#2. Bean validation Refactoring](https://github.com/choijunghwan/Today-I-Learn/blob/main/Project/CharlieZip/validation_refactoring.md)  
-[#3. 중복된 로그인 체크 인터셉트 구현](https://github.com/choijunghwan/Today-I-Learn/blob/main/Project/CharlieZip/Interceptor.md)
+[#3. 중복된 로그인 체크 인터셉트 구현](https://github.com/choijunghwan/Today-I-Learn/blob/main/Project/CharlieZip/Interceptor.md)  
+[#5. bindingResult 메시지 json 전송](https://github.com/choijunghwan/Today-I-Learn/blob/main/Project/CharlieZip/bindingResult.md)
 
 <br><br>
 
