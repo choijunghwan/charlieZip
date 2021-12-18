@@ -19,7 +19,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 @Transactional
-@DataJpaTest
+@SpringBootTest
 class ReplyRepositoryTest {
 
     @Autowired
