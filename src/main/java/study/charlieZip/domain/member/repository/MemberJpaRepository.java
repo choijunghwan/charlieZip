@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-import static study.charlieZip.entity.QMember.*;
+import static study.charlieZip.domain.member.entity.QMember.member;
 
 @Repository
 @RequiredArgsConstructor

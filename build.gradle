@@ -48,18 +48,18 @@ test {
 	useJUnitPlatform()
 }
 
-def querydslDir="$buildDir/generated/querydsl"
+def generated='src/main/generated'
 
 sourceSets {
-	main.java.srcDir querydslDir
+	main.java.srcDirs += [ generated ]
 }
 
 tasks.withType(JavaCompile) {
-	options.annotationProcessorGeneratedSourcesDirectory = file(querydslDir)
+	options.annotationProcessorGeneratedSourcesDirectory = file(generated)
 }
 
 clean.doLast {
-	file(querydslDir).deleteDir()
+	file(generated).deleteDir()
 }
 
 
